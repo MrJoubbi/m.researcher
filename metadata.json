@@ -1,0 +1,6 @@
+{
+  "name": "Moroccan Heritage & Articles",
+  "description": "Explore, read, and publish authentic Moroccan cultural articles, artisanal stories, gastronomy, and travel guides.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

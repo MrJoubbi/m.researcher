@@ -1,0 +1,2524 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <script>
+    /* Polyfill: Ensure window.fetch has both a getter and setter to prevent TypeError in browser extensions/iframes */
+    (function() {
+      try {
+        var _fetch = window.fetch;
+        Object.defineProperty(window, 'fetch', {
+          get: function() { return _fetch; },
+          set: function(fn) { _fetch = fn; },
+          configurable: true,
+          enumerable: true
+        });
+      } catch (err) {}
+
+      window.addEventListener('error', function(e) {
+        if (!e) return;
+        var src = (e.filename || '') + (e.message || '');
+        if (src.indexOf('chrome-extension://') !== -1 || src.indexOf('frame_ant') !== -1 || (src.indexOf('fetch') !== -1 && src.indexOf('getter') !== -1)) {
+          if (e.preventDefault) e.preventDefault();
+          if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+          return true;
+        }
+      }, true);
+    })();
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moroccan Researcher — Services d'Accompagnement Académique</title>
+  <meta name="description" id="meta-description" content="Plateforme d'accompagnement académique expert au Maroc. Conseil en recherche pour mémoires et thèses, analyse de données SPSS / R / Python, vérification Turnitin et préparation aux soutenances." />
+  <meta name="keywords" id="meta-keywords" content="recherche académique maroc, accompagnement thèse maroc, analyse de données spss casablanca, mémoire master rabat, vérification anti-plagiat turnitin, soutenance pfe" />
+  <meta name="author" id="meta-author" content="Moroccan Researcher" />
+  <link rel="canonical" id="canonical-url" href="https://moroccanresearcher.com/" />
+  
+  <!-- OpenGraph / Facebook / LinkedIn / WhatsApp Social Cards -->
+  <meta property="og:site_name" content="Moroccan Researcher" />
+  <meta property="og:type" id="og-type" content="website" />
+  <meta property="og:title" id="og-title" content="Moroccan Researcher — Services d'Accompagnement Académique" />
+  <meta property="og:description" id="og-desc" content="Accompagnement académique expert pour étudiants Licence, Master et Doctorat au Maroc. Conseil en recherche, analyse statistique SPSS / R / Python, et suivi de projet en temps réel." />
+  <meta property="og:url" id="og-url" content="https://moroccanresearcher.com/" />
+  <meta property="og:image" id="og-image" content="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1200&auto=format&fit=crop&q=80" />
+  <meta property="og:locale" content="fr_MA" />
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" id="tw-title" content="Moroccan Researcher — Services d'Accompagnement Académique" />
+  <meta name="twitter:description" id="tw-desc" content="Accompagnement académique expert pour étudiants Licence, Master et Doctorat au Maroc." />
+  <meta name="twitter:image" id="tw-image" content="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1200&auto=format&fit=crop&q=80" />
+
+  <!-- Schema.org JSON-LD Structured Data for Enhanced Rich Snippets -->
+  <script type="application/ld+json" id="seo-schema">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Moroccan Researcher",
+    "alternateName": "The Moroccan Researcher",
+    "url": "https://moroccanresearcher.com/",
+    "logo": "https://moroccanresearcher.com/assets/favicon.svg",
+    "description": "Plateforme de référence pour l'accompagnement académique, la méthodologie de recherche et l'analyse statistique au Maroc.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Casablanca",
+      "addressCountry": "MA"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+212680364052",
+      "contactType": "customer support",
+      "areaServed": "MA",
+      "availableLanguage": ["French", "Arabic", "English"]
+    }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon-BXKXrETa.svg" />
+  <link rel="alternate icon" type="image/svg+xml" href="/assets/favicon-D8tgLLvQ.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Critical styles to guarantee immediate application of classic dark footer and WhatsApp elements -->
+  <style id="critical-footer-nav-theme">footer.footer,.footer{color:#94a3b8!important;box-shadow:none!important;background:#1a1a2e!important;border-top:1px solid #ffffff14!important}.footer .container{max-width:1200px;margin:0 auto;padding:0 20px}.footer-top{grid-template-columns:1.8fr 1fr 1fr 1.2fr!important;gap:40px!important;padding:60px 0 40px!important;display:grid!important}.footer-brand .nav-brand{cursor:pointer!important;align-items:center!important;gap:12px!important;margin-bottom:8px!important;display:inline-flex!important}.footer-brand .brand-icon{background:#fff!important;border-radius:10px!important;flex-shrink:0!important;justify-content:center!important;align-items:center!important;width:40px!important;height:40px!important;display:inline-flex!important;box-shadow:0 4px 12px #00000040!important}.footer-brand .brand-icon .logo-svg{width:28px!important;height:28px!important}.footer-brand .brand-text{color:#fff!important;font-size:20px!important;font-weight:500!important}.footer-brand .brand-text strong{color:#c0392b!important;font-weight:800!important}.footer-brand p{color:#ffffffa6!important;max-width:280px!important;margin-top:14px!important;font-size:14px!important;line-height:1.65!important}.footer-links h4{color:#fff!important;letter-spacing:.2px!important;margin-bottom:18px!important;font-size:15px!important;font-weight:700!important}.footer-links a{color:#ffffffb3!important;margin-bottom:12px!important;font-size:14px!important;text-decoration:none!important;transition:all .2s!important;display:block!important}.footer-links a:hover{color:#fff!important;transform:translate(3px)!important}.footer-bottom{color:#ffffff8c!important;background:0 0!important;border-top:1px solid #ffffff14!important;justify-content:space-between!important;align-items:center!important;padding:24px 0!important;display:flex!important}.social-links{gap:12px!important;display:flex!important}.social-links a{color:#fff!important;background:#ffffff14!important;border:1px solid #ffffff1f!important;border-radius:10px!important;justify-content:center!important;align-items:center!important;width:38px!important;height:38px!important;font-size:15px!important;text-decoration:none!important;transition:all .25s!important;display:flex!important}.social-links a:hover{color:#fff!important;background:#c0392b!important;border-color:#c0392b!important;transform:translateY(-2px)!important;box-shadow:0 4px 12px #c0392b59!important}@media (width<=900px){.footer-top{grid-template-columns:1fr 1fr!important;gap:32px!important;padding:40px 0 30px!important}}@media (width<=600px){.footer-top{grid-template-columns:1fr!important;gap:28px!important;padding:36px 0 24px!important}.footer-bottom{text-align:center!important;flex-direction:column!important;gap:16px!important}}.nav-wa-icon-btn{background:#25d366;border-radius:10px;justify-content:center;align-items:center;width:38px;height:38px;font-size:19px;text-decoration:none;transition:all .2s;display:inline-flex;box-shadow:0 2px 8px #25d36640;color:#fff!important}.nav-wa-icon-btn:hover{background:#20ba59;transform:scale(1.08);box-shadow:0 4px 14px #25d36673}.nav-wa-menu-link{align-items:center;gap:8px;text-decoration:none;transition:color .2s;display:inline-flex;color:#15803d!important;font-weight:600!important}.nav-wa-menu-link i{font-size:18px;color:#25d366!important}.nav-wa-menu-link:hover{color:#166534!important}@media (width<=768px){.nav-actions{display:flex!important}.nav-actions .btn{display:none!important}.nav-wa-icon-btn{width:34px;height:34px;font-size:17px}}</style>
+  <link rel="stylesheet" crossorigin href="/assets/index-wXKd8eka.css">
+</head>
+<body>
+
+<!-- ===== REUSABLE SVG LOGO SYMBOL ===== -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="ms-logo" viewBox="0 0 100 100">
+    <!-- 2-Color Moroccan Researcher Emblem -->
+    <!-- Top-Left (Navy) -->
+    <path d="M 6 6 L 47 6 Q 37 28 50 50 Q 28 37 6 47 Z" fill="#1e2d42" />
+    <!-- Top-Right (Terracotta / Rust) -->
+    <path d="M 53 6 L 94 6 L 94 47 Q 72 37 50 50 Q 63 28 53 6 Z" fill="#b04e3f" />
+    <!-- Bottom-Left (Terracotta / Rust) -->
+    <path d="M 6 53 Q 28 63 50 50 Q 37 72 47 94 L 6 94 Z" fill="#b04e3f" />
+    <!-- Bottom-Right (Navy) -->
+    <path d="M 50 50 Q 72 63 94 53 L 94 94 L 53 94 Q 63 72 50 50 Z" fill="#1e2d42" />
+  </symbol>
+</svg>
+
+<!-- ===================== NAVBAR ===================== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-brand" onclick="showPage('home', true, event); return false;" role="button" tabindex="0" title="Accueil">
+    <span class="brand-icon"><svg class="logo-svg" viewBox="0 0 100 100"><use href="#ms-logo"/></svg></span>
+    <span class="brand-text">Moroccan<strong>Researcher</strong></span>
+  </div>
+
+  <!-- Desktop nav links -->
+  <div class="nav-links" id="navLinks">
+    <a href="#services" onclick="showPage('services', true, event); closeNav(); return false;"><i class="fas fa-briefcase"></i><span>Nos Services</span></a>
+    <a href="#formations" onclick="showPage('formations', true, event); closeNav(); return false;"><i class="fas fa-chalkboard-teacher"></i><span>Formations</span></a>
+    <a href="#blog" onclick="showPage('blog', true, event); closeNav(); return false;"><i class="fas fa-newspaper"></i><span>Blog</span></a>
+    <a href="#contact" onclick="showPage('home', true, event); scrollToSection('contact'); closeNav(); return false;"><i class="fas fa-envelope"></i><span>Contact</span></a>
+    <a href="https://wa.me/212680364052" target="_blank" rel="noopener noreferrer" class="nav-wa-menu-link" title="Contactez-nous sur WhatsApp : 0680364052"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+    <!-- Mobile-only auth buttons (inside menu) -->
+    <div class="mobile-nav-auth">
+      <button class="btn btn-outline btn-full" onclick="showPage('login', true, event); closeNav();"><i class="fas fa-sign-in-alt"></i> Connexion</button>
+      <button class="btn btn-primary btn-full" onclick="showPage('register', true, event); closeNav();"><i class="fas fa-rocket"></i> Commencer</button>
+    </div>
+  </div>
+
+  <!-- Desktop & Mobile nav actions with WhatsApp icon -->
+  <div class="nav-actions" id="navActions">
+    <a href="https://wa.me/212680364052" target="_blank" rel="noopener noreferrer" class="nav-wa-icon-btn" title="Contacter directement sur WhatsApp : 0680364052" aria-label="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <button class="btn btn-outline" onclick="showPage('login', true, event)">Connexion</button>
+    <button class="btn btn-primary" onclick="showPage('register', true, event)">Commencer</button>
+  </div>
+
+  <button class="nav-toggle" id="navToggle" onclick="toggleNav()">
+    <span class="hamburger-bar"></span>
+    <span class="hamburger-bar"></span>
+    <span class="hamburger-bar"></span>
+  </button>
+</nav>
+<div id="nav-backdrop" class="nav-backdrop" onclick="closeNav()"></div>
+
+<!-- ===================== HOME PAGE ===================== -->
+<div id="page-home" class="page active">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fas fa-graduation-cap"></i> Plateforme N°1 de Recherche Académique au Maroc</div>
+      <h1 class="hero-title">Votre Parcours de Recherche<br><span class="gradient-text">Commence Ici</span></h1>
+      <p class="hero-subtitle">Accompagnement académique expert pour les étudiants Licence, Master et Doctorat au Maroc. Conseil en recherche, analyse de données, et suivi de projet en temps réel.</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary btn-lg" onclick="showPage('register')">Démarrer mon Projet <i class="fas fa-arrow-right"></i></button>
+        <button class="btn btn-ghost btn-lg" onclick="showPage('services')">Nos Services</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>155+</strong><span>Projets Réalisés</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>98%</strong><span>Taux de Réussite</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>50+</strong><span>Chercheurs Experts</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="card-float card-1">
+        <i class="fas fa-check-circle text-green"></i>
+        <span>Projet Approuvé</span>
+      </div>
+      <div class="card-float card-2">
+        <i class="fas fa-chart-line text-blue"></i>
+        <span>75% Réalisé</span>
+        <div class="mini-bar"><div class="mini-fill" style="width:75%"></div></div>
+      </div>
+      <div class="card-float card-3">
+        <i class="fas fa-star text-gold"></i>
+        <span>Excellente Note</span>
+      </div>
+      <div class="moroccan-pattern"></div>
+    </div>
+  </section>
+
+  <!-- Nos Services -->
+  <section class="features" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Nos Services</span>
+        <h2>Tout Ce Dont Vous Avez Besoin</h2>
+        <p>De votre première question de recherche à votre soutenance finale, nous sommes à vos côtés à chaque étape.</p>
+      </div>
+      <div class="features-grid features-grid-4">
+        <div class="feature-card" style="position:relative">
+          <div class="step-badge">01</div>
+          <div class="feature-icon" style="background:rgba(192,57,43,.08)"><i class="fas fa-search" style="color:var(--red)"></i></div>
+          <h3>Conseil en Recherche</h3>
+          <p>Accompagnement complet de votre projet de recherche : formulation de la problématique, revue de littérature, cadre théorique et méthodologie scientifique adaptée à votre domaine.</p>
+          <ul class="feature-list">
+            <li><i class="fas fa-check"></i> Choix et validation du sujet</li>
+            <li><i class="fas fa-check"></i> Plan de recherche structuré</li>
+            <li><i class="fas fa-check"></i> Revue de littérature (50–100+ sources)</li>
+            <li><i class="fas fa-check"></i> Cadre conceptuel & théorique</li>
+          </ul>
+        </div>
+        <div class="feature-card" style="position:relative">
+          <div class="step-badge">02</div>
+          <div class="feature-icon" style="background:rgba(192,57,43,.08)"><i class="fas fa-chart-bar" style="color:var(--red)"></i></div>
+          <h3>Analyse de Données</h3>
+          <p>Traitement et interprétation de vos données avec les outils statistiques les plus performants : SPSS, R et Python — incluant la rédaction des résultats et discussions pour votre mémoire.</p>
+          <ul class="feature-list">
+            <li><i class="fas fa-check"></i> Analyse statistique SPSS / R / Python</li>
+            <li><i class="fas fa-check"></i> Tests de corrélation, ANOVA, régression</li>
+            <li><i class="fas fa-check"></i> Visualisation et graphiques académiques</li>
+            <li><i class="fas fa-check"></i> Interprétation et rédaction des résultats</li>
+          </ul>
+        </div>
+        <div class="feature-card" style="position:relative">
+          <div class="step-badge">03</div>
+          <div class="feature-icon" style="background:rgba(192,57,43,.08)"><i class="fas fa-file-powerpoint" style="color:var(--red)"></i></div>
+          <h3>Conception de Présentations</h3>
+          <p>Création de présentations PowerPoint professionnelles et percutantes pour votre soutenance — design soigné, structure claire et contenu scientifiquement solide pour impressionner votre jury.</p>
+          <ul class="feature-list">
+            <li><i class="fas fa-check"></i> Présentation PowerPoint sur mesure</li>
+            <li><i class="fas fa-check"></i> Design professionnel et cohérent</li>
+            <li><i class="fas fa-check"></i> Structure adaptée à la soutenance</li>
+            <li><i class="fas fa-check"></i> Coaching pour la présentation orale</li>
+          </ul>
+        </div>
+        <div class="feature-card" style="position:relative">
+          <div class="step-badge">04</div>
+          <div class="feature-icon" style="background:rgba(192,57,43,.08)"><i class="fas fa-shield-alt" style="color:var(--red)"></i></div>
+          <h3>Vérification Anti-Plagiat</h3>
+          <p>Contrôle de l'originalité de votre travail académique avec les outils certifiés Turnitin et iThenticate — rapport détaillé et recommandations de corrections avant la soumission finale.</p>
+          <ul class="feature-list">
+            <li><i class="fas fa-check"></i> Scan Turnitin ou iThenticate certifié</li>
+            <li><i class="fas fa-check"></i> Rapport de similarité détaillé</li>
+            <li><i class="fas fa-check"></i> Recommandations de correction</li>
+            <li><i class="fas fa-check"></i> Résultats livrés en moins de 24h</li>
+          </ul>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:40px">
+        <button class="btn btn-primary btn-lg" onclick="showPage('services')">Voir Tous Nos Services <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comment ça marche -->
+  <section class="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Processus Simple</span>
+        <h2>Démarrez en 3 Étapes</h2>
+      </div>
+      <div class="steps-clean">
+        <div class="step-card">
+          <div class="step-badge">01</div>
+          <div class="step-icon-wrap"><i class="fas fa-layer-group"></i></div>
+          <h3>Choisissez Votre Niveau & Pack</h3>
+          <p>Sélectionnez Licence, Master ou Doctorat et choisissez le pack qui correspond à vos besoins et votre budget.</p>
+        </div>
+        <div class="step-connector"><i class="fas fa-arrow-right"></i></div>
+        <div class="step-card">
+          <div class="step-badge">02</div>
+          <div class="step-icon-wrap"><i class="fas fa-file-alt"></i></div>
+          <h3>Présentez Votre Projet</h3>
+          <p>Renseignez votre sujet, délai et exigences. Notre équipe vous associe à l'expert le plus adapté à votre domaine.</p>
+        </div>
+        <div class="step-connector"><i class="fas fa-arrow-right"></i></div>
+        <div class="step-card">
+          <div class="step-badge">03</div>
+          <div class="step-icon-wrap"><i class="fas fa-chart-line"></i></div>
+          <h3>Suivez & Réussissez</h3>
+          <p>Suivez chaque étape en temps réel sur votre tableau de bord personnel jusqu'à la remise de votre projet final.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Teaser Section -->
+  <section class="blog-teaser-section" id="home-blog">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Blog & Ressources</span>
+        <h2>Dernières Publications Académiques</h2>
+        <p>Guides méthodologiques, astuces statistiques SPSS et conseils de rédaction par nos docteurs et experts.</p>
+      </div>
+      <div id="home-blog-grid" class="blog-grid blog-grid-3"></div>
+      <div style="text-align:center;margin-top:40px">
+        <button class="btn btn-outline btn-lg" onclick="showPage('blog')">Explorer Tous les Articles <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <span class="section-tag">Contactez-Nous</span>
+          <h2>Nous Sommes Là Pour Vous</h2>
+          <p>Une question sur nos services ? Notre équipe est disponible 7j/7 pour vous accompagner et répondre à vos besoins.</p>
+          <div class="contact-items">
+            <a href="mailto:contact@moroccanresearcher.com" class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <strong style="display:block;font-size:13px;color:var(--dark);margin-bottom:2px">Email Professionnel</strong>
+                <span>contact@moroccanresearcher.com</span>
+              </div>
+            </a>
+            <a href="tel:0680364052" class="contact-item">
+              <i class="fas fa-phone"></i>
+              <div>
+                <strong style="display:block;font-size:13px;color:var(--dark);margin-bottom:2px">Téléphone</strong>
+                <span>0680364052</span>
+              </div>
+            </a>
+            <a href="https://wa.me/212680364052" target="_blank" rel="noopener noreferrer" class="contact-item contact-item-wa" title="Discuter directement sur WhatsApp : 0680364052">
+              <i class="fab fa-whatsapp"></i>
+              <div>
+                <strong style="display:block;font-size:13px;color:#16a34a;margin-bottom:2px">WhatsApp Direct</strong>
+                <span style="font-weight:600;color:var(--dark)">0680364052</span>
+                <span class="contact-wa-badge">Discuter sur WhatsApp <i class="fas fa-arrow-right"></i></span>
+              </div>
+            </a>
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <strong style="display:block;font-size:13px;color:var(--dark);margin-bottom:2px">Bureau &amp; Siège</strong>
+                <span>Casablanca, Maroc</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form" onsubmit="handleContact(event)">
+          <input type="text" name="bot_check" style="display:none" tabindex="-1" autocomplete="off" />
+          <div class="form-row">
+            <div class="form-group"><label>Nom Complet <span class="required-star">*</span></label><input type="text" name="name" id="contact-name" placeholder="Votre nom complet" required /></div>
+            <div class="form-group"><label>Email <span class="required-star">*</span></label><input type="email" name="email" id="contact-email" placeholder="vous@email.com" required /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Téléphone / WhatsApp</label><input type="tel" name="phone" id="contact-phone" placeholder="06XXXXXXXX" /></div>
+            <div class="form-group"><label>Sujet de la Demande <span class="required-star">*</span></label><input type="text" name="subject" id="contact-subject" placeholder="Ex: Accompagnement PFE, SPSS..." required /></div>
+          </div>
+          <div class="form-group"><label>Message / Description de votre besoin <span class="required-star">*</span></label><textarea name="message" id="contact-message" rows="4" placeholder="Parlez-nous de votre projet, délai et exigences..." required></textarea></div>
+          <button type="submit" class="btn btn-primary btn-full">Envoyer le Message <i class="fas fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="nav-brand" onclick="showPage('home', true, event); return false;" role="button" tabindex="0" title="Accueil">
+            <span class="brand-icon"><svg class="logo-svg" viewBox="0 0 100 100"><use href="#ms-logo"/></svg></span>
+            <span class="brand-text">Moroccan<strong>Researcher</strong></span>
+          </div>
+          <p>La plateforme N°1 d'accompagnement académique au Maroc.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Services</h4>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Conseil en Recherche</a>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Analyse de Données</a>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Conception de Présentations</a>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Vérification Anti-Plagiat</a>
+        </div>
+        <div class="footer-links">
+          <h4>Ressources</h4>
+          <a href="#blog" onclick="showPage('blog', true, event); return false;">Tous les Articles</a>
+          <a href="#formations" onclick="showPage('formations', true, event); return false;">Formations SPSS</a>
+          <a href="#pricing" onclick="showPage('pricing', true, event); return false;">Tarifs &amp; Packs</a>
+        </div>
+        <div class="footer-links">
+          <h4>Contact &amp; Support</h4>
+          <a href="https://wa.me/212680364052" target="_blank"><i class="fab fa-whatsapp" style="color:#25D366;margin-right:4px"></i> WhatsApp : 0680364052</a>
+          <a href="mailto:contact@moroccanresearcher.com"><i class="far fa-envelope" style="margin-right:4px"></i> contact@moroccanresearcher.com</a>
+          <a href="#contact" onclick="showPage('home', true, event); scrollToSection('contact'); return false;"><i class="fas fa-paper-plane" style="margin-right:4px"></i> Formulaire de Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 MoroccanResearcher.com — Tous droits réservés.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/themoroccanresearcher" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/moroccan_researcher" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/212680364052" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ===================== SERVICES PAGE ===================== -->
+<div id="page-services" class="page">
+  <div class="page-header-banner">
+    <div class="container">
+      <h1>Nos Services</h1>
+      <p>Un accompagnement académique complet, adapté à chaque étudiant et chercheur</p>
+    </div>
+  </div>
+  <div class="container" style="padding:60px 20px">
+
+    <!-- Main Services -->
+    <div class="section-header" style="margin-bottom:48px">
+      <span class="section-tag">Services Principaux</span>
+      <h2>Ce Que Nous Offrons</h2>
+      <p>Des services professionnels couvrant toutes les étapes de votre parcours de recherche académique.</p>
+    </div>
+
+    <div class="services-full-grid">
+
+      <div class="service-full-card">
+        <div class="service-full-icon" style="background:#fff3e0;color:#f39c12"><i class="fas fa-search"></i></div>
+        <div class="service-full-body">
+          <h3>Conseil en Recherche</h3>
+          <p>Un accompagnement expert et personnalisé pour structurer votre projet de recherche de A à Z. De la formulation de votre problématique à la rédaction finale, nos experts vous guident à chaque étape avec rigueur et méthode.</p>
+          <div class="service-tags">
+            <span>Problématique</span><span>Revue de littérature</span><span>Cadre théorique</span><span>Méthodologie</span><span>Rédaction</span>
+          </div>
+          <ul class="service-full-list">
+            <li><i class="fas fa-check-circle"></i> Sélection et validation du sujet de recherche</li>
+            <li><i class="fas fa-check-circle"></i> Formulation des objectifs et questions de recherche</li>
+            <li><i class="fas fa-check-circle"></i> Revue de littérature exhaustive (50 à 100+ sources)</li>
+            <li><i class="fas fa-check-circle"></i> Cadre conceptuel, théorique et épistémologique</li>
+            <li><i class="fas fa-check-circle"></i> Conception de la méthodologie (quant / qual / mixte)</li>
+            <li><i class="fas fa-check-circle"></i> Suivi et accompagnement jusqu'à la soutenance</li>
+          </ul>
+          <button class="btn btn-primary" onclick="showPage('register')">Démarrer Mon Projet <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <div class="service-full-card">
+        <div class="service-full-icon" style="background:#e8f5e9;color:#27ae60"><i class="fas fa-chart-bar"></i></div>
+        <div class="service-full-body">
+          <h3>Analyse de Données</h3>
+          <p>Traitement professionnel de vos données quantitatives et qualitatives avec les outils statistiques les plus reconnus dans le monde académique. Nous produisons des résultats précis, interprétés et prêts à intégrer dans votre mémoire ou thèse.</p>
+          <div class="service-tags">
+            <span>SPSS</span><span>R Studio</span><span>Python</span><span>Excel</span><span>Statistiques</span>
+          </div>
+          <ul class="service-full-list">
+            <li><i class="fas fa-check-circle"></i> Analyse descriptive, inférentielle et multivariée</li>
+            <li><i class="fas fa-check-circle"></i> Tests statistiques : ANOVA, régression, corrélation</li>
+            <li><i class="fas fa-check-circle"></i> Modélisation avec R, Python ou SPSS</li>
+            <li><i class="fas fa-check-circle"></i> Visualisation de données et graphiques académiques</li>
+            <li><i class="fas fa-check-circle"></i> Interprétation et rédaction des résultats</li>
+            <li><i class="fas fa-check-circle"></i> Analyse qualitative (entretiens, contenu, NVivo)</li>
+          </ul>
+          <button class="btn btn-primary" onclick="showPage('register')">Démarrer Mon Projet <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <div class="service-full-card">
+        <div class="service-full-icon" style="background:#e3f2fd;color:#2980b9"><i class="fas fa-file-powerpoint"></i></div>
+        <div class="service-full-body">
+          <h3>Conception de Présentations</h3>
+          <p>Des présentations PowerPoint professionnelles et visuellement percutantes pour votre soutenance académique. Un design soigné, une structure claire et un contenu scientifiquement rigoureux pour convaincre votre jury dès les premières diapositives.</p>
+          <div class="service-tags">
+            <span>PowerPoint</span><span>Soutenance</span><span>Design académique</span><span>Jury</span>
+          </div>
+          <ul class="service-full-list">
+            <li><i class="fas fa-check-circle"></i> Présentation PowerPoint entièrement personnalisée</li>
+            <li><i class="fas fa-check-circle"></i> Design professionnel et charte graphique cohérente</li>
+            <li><i class="fas fa-check-circle"></i> Structure optimisée pour capter l'attention du jury</li>
+            <li><i class="fas fa-check-circle"></i> Intégration de graphiques, tableaux et visuels clairs</li>
+            <li><i class="fas fa-check-circle"></i> Coaching pour l'aisance à l'oral et la gestion du temps</li>
+            <li><i class="fas fa-check-circle"></i> Simulation de soutenance avec questions de jury</li>
+          </ul>
+          <button class="btn btn-primary" onclick="showPage('register')">Démarrer Mon Projet <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <div class="service-full-card">
+        <div class="service-full-icon" style="background:#fce4ec;color:#e74c3c"><i class="fas fa-shield-alt"></i></div>
+        <div class="service-full-body">
+          <h3>Vérification Anti-Plagiat</h3>
+          <p>Assurez l'originalité de votre travail académique avant la soumission officielle grâce à nos outils de détection certifiés. Obtenez un rapport complet avec les zones à corriger et des recommandations pratiques pour garantir la conformité de votre mémoire ou thèse.</p>
+          <div class="service-tags">
+            <span>Turnitin</span><span>iThenticate</span><span>Originalité</span><span>Rapport</span>
+          </div>
+          <ul class="service-full-list">
+            <li><i class="fas fa-check-circle"></i> Scan certifié Turnitin ou iThenticate</li>
+            <li><i class="fas fa-check-circle"></i> Rapport de similarité détaillé source par source</li>
+            <li><i class="fas fa-check-circle"></i> Identification précise des zones problématiques</li>
+            <li><i class="fas fa-check-circle"></i> Recommandations concrètes de reformulation</li>
+            <li><i class="fas fa-check-circle"></i> Résultats livrés en moins de 24 heures</li>
+            <li><i class="fas fa-check-circle"></i> Tarif : 150 à 300 DHS selon la taille du document</li>
+          </ul>
+          <button class="btn btn-primary" onclick="showPage('register')">Réserver <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Training Programs teaser -->
+    <div class="section-header" style="margin-top:80px;margin-bottom:32px">
+      <span class="section-tag">Formations</span>
+      <h2>Programmes de Formation</h2>
+      <p>Des formations intensives mensuelles pour maîtriser les outils essentiels de la recherche académique.</p>
+    </div>
+    <div class="formations-teaser">
+      <div class="formation-teaser-card">
+        <div class="formation-icon" style="background:#e3f2fd;color:#1565c0"><i class="fas fa-chart-bar"></i></div>
+        <h3>Formation SPSS</h3>
+        <p>Analyse statistique appliquée — 2 séances/semaine sur 1 mois, en ligne ou présentiel.</p>
+      </div>
+      <div class="formation-teaser-card">
+        <div class="formation-icon" style="background:#fce4ec;color:#c0392b"><i class="fas fa-flask"></i></div>
+        <h3>Méthodologie de Recherche</h3>
+        <p>Méthodes quant, qual & mixtes — 2 séances/semaine sur 1 mois, exercices pratiques inclus.</p>
+      </div>
+      <div class="formation-teaser-card">
+        <div class="formation-icon" style="background:#e8f5e9;color:#2e7d32"><i class="fas fa-pen-nib"></i></div>
+        <h3>Rédaction Académique</h3>
+        <p>Normes APA, citation, anti-plagiat — 2 séances/semaine sur 1 mois, correction incluse.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:28px">
+      <button class="btn btn-primary btn-lg" onclick="showPage('formations')">Voir Toutes les Formations <i class="fas fa-arrow-right"></i></button>
+    </div>
+
+    <!-- CTA -->
+    <div class="services-cta-banner">
+      <h2>Prêt à Démarrer Votre Projet ?</h2>
+      <p>Rejoignez plus de 155 étudiants qui ont réussi leur soutenance avec MoroccanResearcher.</p>
+      <button class="btn btn-primary btn-lg" onclick="showPage('register')">Commencer Maintenant <i class="fas fa-arrow-right"></i></button>
+    </div>
+
+  </div>
+
+  <!-- Services Page Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="nav-brand" onclick="showPage('home', true, event); return false;" role="button" tabindex="0" title="Accueil">
+            <span class="brand-icon"><svg class="logo-svg" viewBox="0 0 100 100"><use href="#ms-logo"/></svg></span>
+            <span class="brand-text">Moroccan<strong>Researcher</strong></span>
+          </div>
+          <p>La plateforme N°1 d'accompagnement académique au Maroc.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Services</h4>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Conseil en Recherche</a>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Analyse de Données</a>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Conception de Présentations</a>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Vérification Anti-Plagiat</a>
+        </div>
+        <div class="footer-links">
+          <h4>Ressources</h4>
+          <a href="#blog" onclick="showPage('blog', true, event); return false;">Tous les Articles</a>
+          <a href="#formations" onclick="showPage('formations', true, event); return false;">Formations SPSS</a>
+          <a href="#pricing" onclick="showPage('pricing', true, event); return false;">Tarifs &amp; Packs</a>
+        </div>
+        <div class="footer-links">
+          <h4>Contact &amp; Support</h4>
+          <a href="https://wa.me/212680364052" target="_blank"><i class="fab fa-whatsapp" style="color:#25D366;margin-right:4px"></i> WhatsApp : 0680364052</a>
+          <a href="mailto:contact@moroccanresearcher.com"><i class="far fa-envelope" style="margin-right:4px"></i> contact@moroccanresearcher.com</a>
+          <a href="#contact" onclick="showPage('home', true, event); scrollToSection('contact'); return false;"><i class="fas fa-paper-plane" style="margin-right:4px"></i> Formulaire de Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 MoroccanResearcher.com — Tous droits réservés.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/themoroccanresearcher" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/moroccan_researcher" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/212680364052" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ===================== FORMATIONS PAGE ===================== -->
+<div id="page-formations" class="page">
+  <div class="page-header-banner">
+    <div class="container">
+      <h1>Nos Formations</h1>
+      <p>Des programmes intensifs pour maîtriser les outils essentiels de la recherche académique</p>
+    </div>
+  </div>
+  <div class="container" style="padding:60px 20px">
+
+    <div class="section-header" style="margin-bottom:48px">
+      <span class="section-tag">Formations Pratiques</span>
+      <h2>Apprenez. Pratiquez. Réussissez.</h2>
+      <p>Des formations mensuelles en petits groupes, animées par des experts certifiés — 2 séances par semaine, entièrement en ligne ou en présentiel.</p>
+    </div>
+
+    <!-- Formation cards -->
+    <div class="formations-grid">
+
+      <div class="formation-card">
+        <div class="formation-icon" style="background:#e3f2fd;color:#1565c0"><i class="fas fa-chart-bar"></i></div>
+        <div class="formation-badge">Statistiques</div>
+        <h3>Formation SPSS</h3>
+        <p class="formation-sub">Maîtrisez l'analyse statistique appliquée à la recherche académique avec des données réelles.</p>
+        <div class="formation-details">
+          <div class="formation-detail"><i class="fas fa-calendar-week"></i> 2 séances / semaine</div>
+          <div class="formation-detail"><i class="fas fa-clock"></i> 1h30 par séance</div>
+          <div class="formation-detail"><i class="fas fa-layer-group"></i> 8 séances sur 1 mois</div>
+          <div class="formation-detail"><i class="fas fa-laptop"></i> En ligne ou présentiel</div>
+        </div>
+        <ul class="formation-list">
+          <li><i class="fas fa-check"></i> Statistiques descriptives & inférentielles</li>
+          <li><i class="fas fa-check"></i> Tests t, ANOVA, corrélation, régression</li>
+          <li><i class="fas fa-check"></i> Pratique sur vos propres données</li>
+          <li><i class="fas fa-check"></i> Supports de cours & exercices fournis</li>
+        </ul>
+        <button class="btn btn-primary btn-full formation-cta" onclick="showPage('register')">
+          <i class="fas fa-mouse-pointer"></i> Sélectionner
+        </button>
+      </div>
+
+      <div class="formation-card featured-formation">
+        <div class="formation-popular-badge">Plus Demandée</div>
+        <div class="formation-icon" style="background:#fce4ec;color:#c0392b"><i class="fas fa-flask"></i></div>
+        <div class="formation-badge">Méthodologie</div>
+        <h3>Formation Méthodologie de Recherche</h3>
+        <p class="formation-sub">Construisez une méthodologie scientifique rigoureuse adaptée à votre domaine et votre niveau.</p>
+        <div class="formation-details">
+          <div class="formation-detail"><i class="fas fa-calendar-week"></i> 2 séances / semaine</div>
+          <div class="formation-detail"><i class="fas fa-clock"></i> 1h30 par séance</div>
+          <div class="formation-detail"><i class="fas fa-layer-group"></i> 8 séances sur 1 mois</div>
+          <div class="formation-detail"><i class="fas fa-laptop"></i> En ligne ou présentiel</div>
+        </div>
+        <ul class="formation-list">
+          <li><i class="fas fa-check"></i> Méthodes quantitatives, qualitatives & mixtes</li>
+          <li><i class="fas fa-check"></i> Formulation de la problématique & hypothèses</li>
+          <li><i class="fas fa-check"></i> Construction des outils de collecte (questionnaire, guide)</li>
+          <li><i class="fas fa-check"></i> Exercices pratiques sur votre propre sujet</li>
+          <li><i class="fas fa-check"></i> Guide & modèles de référence inclus</li>
+        </ul>
+        <button class="btn btn-primary btn-full formation-cta" onclick="showPage('register')">
+          <i class="fas fa-mouse-pointer"></i> Sélectionner
+        </button>
+      </div>
+
+      <div class="formation-card">
+        <div class="formation-icon" style="background:#e8f5e9;color:#2e7d32"><i class="fas fa-search"></i></div>
+        <div class="formation-badge">Anti-Plagiat</div>
+        <h3>Formation Rédaction Académique</h3>
+        <p class="formation-sub">Apprenez à rédiger un travail académique original, correctement cité et conforme aux normes universitaires.</p>
+        <div class="formation-details">
+          <div class="formation-detail"><i class="fas fa-calendar-week"></i> 2 séances / semaine</div>
+          <div class="formation-detail"><i class="fas fa-clock"></i> 1h30 par séance</div>
+          <div class="formation-detail"><i class="fas fa-layer-group"></i> 8 séances sur 1 mois</div>
+          <div class="formation-detail"><i class="fas fa-laptop"></i> En ligne ou présentiel</div>
+        </div>
+        <ul class="formation-list">
+          <li><i class="fas fa-check"></i> Normes APA, Chicago & ISO 690</li>
+          <li><i class="fas fa-check"></i> Techniques de paraphrase & citation</li>
+          <li><i class="fas fa-check"></i> Utilisation de Mendeley / Zotero</li>
+          <li><i class="fas fa-check"></i> Comment éviter le plagiat involontaire</li>
+          <li><i class="fas fa-check"></i> Correction de votre propre rédaction</li>
+        </ul>
+        <button class="btn btn-primary btn-full formation-cta" onclick="showPage('register')">
+          <i class="fas fa-mouse-pointer"></i> Sélectionner
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Why us -->
+    <div class="formations-why">
+      <div class="section-header" style="margin-bottom:40px;margin-top:80px">
+        <span class="section-tag">Pourquoi Nous Choisir</span>
+        <h2>Ce Qui Nous Distingue</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card"><i class="fas fa-user-graduate"></i><h4>Formateurs Experts</h4><p>Tous nos formateurs sont des doctorants ou docteurs avec une expérience académique réelle.</p></div>
+        <div class="why-card"><i class="fas fa-users"></i><h4>Petits Groupes</h4><p>Maximum 8 participants par groupe pour un suivi personnalisé et des échanges enrichissants.</p></div>
+        <div class="why-card"><i class="fas fa-laptop-code"></i><h4>100% Pratique</h4><p>Chaque séance inclut des exercices sur vos propres données — pas de théorie sans application.</p></div>
+        <div class="why-card"><i class="fas fa-comments"></i><h4>Suivi Personnalisé</h4><p>Un formateur dédié vous accompagne tout au long de votre formation et répond à vos questions.</p></div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="services-cta-banner" style="margin-top:60px">
+      <h2>Intéressé par une Formation ?</h2>
+      <p>Contactez-nous et nous vous enverrons le programme détaillé et le tarif selon votre profil.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-primary btn-lg" onclick="showPage('register')"><i class="fas fa-mouse-pointer"></i> Sélectionner une Formation</button>
+        <a href="https://wa.me/212680364052" target="_blank" class="btn btn-lg" style="background:#25D366;color:#fff;border:none"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Formations Page Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="nav-brand" onclick="showPage('home', true, event); return false;" role="button" tabindex="0" title="Accueil">
+            <span class="brand-icon"><svg class="logo-svg" viewBox="0 0 100 100"><use href="#ms-logo"/></svg></span>
+            <span class="brand-text">Moroccan<strong>Researcher</strong></span>
+          </div>
+          <p>La plateforme N°1 d'accompagnement académique au Maroc.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Services</h4>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Conseil en Recherche</a>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Analyse de Données</a>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Conception de Présentations</a>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Vérification Anti-Plagiat</a>
+        </div>
+        <div class="footer-links">
+          <h4>Ressources</h4>
+          <a href="#blog" onclick="showPage('blog', true, event); return false;">Tous les Articles</a>
+          <a href="#formations" onclick="showPage('formations', true, event); return false;">Formations SPSS</a>
+          <a href="#pricing" onclick="showPage('pricing', true, event); return false;">Tarifs &amp; Packs</a>
+        </div>
+        <div class="footer-links">
+          <h4>Contact &amp; Support</h4>
+          <a href="https://wa.me/212680364052" target="_blank"><i class="fab fa-whatsapp" style="color:#25D366;margin-right:4px"></i> WhatsApp : 0680364052</a>
+          <a href="mailto:contact@moroccanresearcher.com"><i class="far fa-envelope" style="margin-right:4px"></i> contact@moroccanresearcher.com</a>
+          <a href="#contact" onclick="showPage('home', true, event); scrollToSection('contact'); return false;"><i class="fas fa-paper-plane" style="margin-right:4px"></i> Formulaire de Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 MoroccanResearcher.com — Tous droits réservés.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/themoroccanresearcher" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/moroccan_researcher" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/212680364052" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ===================== BLOG PAGE ===================== -->
+<div id="page-blog" class="page">
+  <div class="page-header-banner blog-page-banner">
+    <div class="container">
+      <div class="blog-brand-pill">
+        <span class="brand-icon"><svg class="logo-svg" viewBox="0 0 100 100"><use href="#ms-logo"/></svg></span>
+        <span class="blog-brand-text">Moroccan<strong>Researcher</strong> · Publications &amp; Ressources</span>
+      </div>
+      <h1>Blog &amp; Ressources Académiques</h1>
+      <p>Tutoriels, méthodologies de recherche, analyses statistiques et guides pour réussir votre mémoire ou thèse</p>
+    </div>
+  </div>
+  <div class="container" style="padding:48px 20px 80px">
+    <div class="blog-controls-bar">
+      <div class="blog-search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="blog-search" placeholder="Rechercher par titre, mot-clé, outil (SPSS, APA, Turnitin)..." oninput="handleBlogSearch(event)" />
+      </div>
+      <div class="blog-categories-scroll">
+        <button class="blog-cat-btn active" onclick="filterBlogCategory('all', this)"><i class="fas fa-th-large"></i> Tous</button>
+        <button class="blog-cat-btn" onclick="filterBlogCategory('Méthodologie', this)"><i class="fas fa-flask"></i> Méthodologie</button>
+        <button class="blog-cat-btn" onclick="filterBlogCategory('SPSS & Statistiques', this)"><i class="fas fa-chart-bar"></i> SPSS & Statistiques</button>
+        <button class="blog-cat-btn" onclick="filterBlogCategory('Rédaction & APA', this)"><i class="fas fa-feather-alt"></i> Rédaction & APA</button>
+      </div>
+    </div>
+
+    <div id="blog-featured-article" style="margin-bottom:40px"></div>
+
+    <div id="blog-articles-grid" class="blog-grid"></div>
+
+    <div class="blog-advisory-cta">
+      <div class="cta-content">
+        <span class="cta-badge"><i class="fas fa-graduation-cap"></i> Besoin d'Aide sur Votre Sujet ?</span>
+        <h3>Vous bloquez sur votre méthodologie ou analyse statistique ?</h3>
+        <p>Prenez contact avec nos experts pour un accompagnement sur-mesure adapté à votre université.</p>
+      </div>
+      <div class="cta-actions">
+        <button class="btn btn-primary btn-lg" onclick="showPage('register')">Démarrer Mon Projet <i class="fas fa-arrow-right"></i></button>
+        <a href="https://wa.me/212680364052" target="_blank" class="btn btn-ghost-white btn-lg"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Blog Page Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="nav-brand" onclick="showPage('home', true, event); return false;" role="button" tabindex="0" title="Accueil">
+            <span class="brand-icon"><svg class="logo-svg" viewBox="0 0 100 100"><use href="#ms-logo"/></svg></span>
+            <span class="brand-text">Moroccan<strong>Researcher</strong></span>
+          </div>
+          <p>La plateforme N°1 d'accompagnement académique au Maroc.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Services</h4>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Conseil en Recherche</a>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Analyse de Données</a>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Conception de Présentations</a>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Vérification Anti-Plagiat</a>
+        </div>
+        <div class="footer-links">
+          <h4>Ressources</h4>
+          <a href="#blog" onclick="showPage('blog', true, event); return false;">Tous les Articles</a>
+          <a href="#formations" onclick="showPage('formations', true, event); return false;">Formations SPSS</a>
+          <a href="#pricing" onclick="showPage('pricing', true, event); return false;">Tarifs &amp; Packs</a>
+        </div>
+        <div class="footer-links">
+          <h4>Contact &amp; Support</h4>
+          <a href="https://wa.me/212680364052" target="_blank"><i class="fab fa-whatsapp" style="color:#25D366;margin-right:4px"></i> WhatsApp : 0680364052</a>
+          <a href="mailto:contact@moroccanresearcher.com"><i class="far fa-envelope" style="margin-right:4px"></i> contact@moroccanresearcher.com</a>
+          <a href="#contact" onclick="showPage('home', true, event); scrollToSection('contact'); return false;"><i class="fas fa-paper-plane" style="margin-right:4px"></i> Formulaire de Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 MoroccanResearcher.com — Tous droits réservés.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/themoroccanresearcher" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/moroccan_researcher" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/212680364052" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ===================== DEDICATED ARTICLE PAGE (FULL-PAGE SEO VIEW) ===================== -->
+<div id="page-article" class="page">
+  <!-- Breadcrumb Navigation Bar -->
+  <div class="article-breadcrumb-bar">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Fil d'Ariane" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="#home" onclick="showPage('home'); return false;" itemprop="item"><i class="fas fa-home"></i> <span itemprop="name">Accueil</span></a>
+          <meta itemprop="position" content="1" />
+        </span>
+        <span class="bc-sep"><i class="fas fa-chevron-right"></i></span>
+        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="#blog" onclick="showPage('blog'); return false;" itemprop="item"><i class="fas fa-newspaper"></i> <span itemprop="name">Blog &amp; Ressources</span></a>
+          <meta itemprop="position" content="2" />
+        </span>
+        <span class="bc-sep"><i class="fas fa-chevron-right"></i></span>
+        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="#blog" onclick="showPage('blog'); return false;" itemprop="item"><span id="art-bc-cat" class="bc-current-cat" itemprop="name">Méthodologie</span></a>
+          <meta itemprop="position" content="3" />
+        </span>
+        <span class="bc-sep"><i class="fas fa-chevron-right"></i></span>
+        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span id="art-bc-title" class="bc-current-title" itemprop="name">Titre de l'Article</span>
+          <meta itemprop="position" content="4" />
+        </span>
+      </nav>
+    </div>
+  </div>
+
+  <article class="article-detail-wrap" itemscope itemtype="https://schema.org/ScholarlyArticle">
+    <div class="container">
+      <!-- Article Header -->
+      <header class="article-hero-header">
+        <div class="article-meta-badges">
+          <span class="article-category-badge" id="art-page-cat">Méthodologie</span>
+          <span class="article-readtime-badge"><i class="far fa-clock"></i> <span id="art-page-readtime">5 min</span></span>
+          <span class="article-date-badge"><i class="far fa-calendar-alt"></i> <span id="art-page-date">20 Mars 2026</span></span>
+          <span class="article-words-badge"><i class="fas fa-file-alt"></i> <span id="art-page-words">850 mots</span></span>
+          <span class="article-verified-badge"><i class="fas fa-check-circle"></i> Révision Académique</span>
+          <span class="views-counter"><i class="far fa-eye"></i> <span id="art-page-views">0</span> lectures</span>
+        </div>
+
+        <h1 class="article-main-title" id="art-page-title" itemprop="headline">Titre de l'article</h1>
+        
+        <p class="article-main-excerpt" id="art-page-excerpt" itemprop="description">
+          Extrait et synthèse de l'article académique...
+        </p>
+
+        <!-- Author Bar & Social Sharing -->
+        <div class="article-author-share-bar">
+          <div class="author-info-group">
+            <div class="author-avatar"><i class="fas fa-user-graduate"></i></div>
+            <div class="author-meta-text">
+              <span class="author-name" id="art-page-author" itemprop="author">Dr. Karim Ouazzani</span>
+              <span class="author-title">Chercheur &amp; Consultant Académique · Moroccan Researcher</span>
+            </div>
+          </div>
+
+          <div class="article-share-actions">
+            <span class="share-label"><i class="fas fa-share-alt"></i> Partager :</span>
+            <button class="share-btn share-wa" id="art-share-wa" onclick="shareArticle('wa')" title="Partager sur WhatsApp"><i class="fab fa-whatsapp"></i></button>
+            <button class="share-btn share-li" id="art-share-li" onclick="shareArticle('li')" title="Partager sur LinkedIn"><i class="fab fa-linkedin-in"></i></button>
+            <button class="share-btn share-tw" id="art-share-tw" onclick="shareArticle('tw')" title="Partager sur X"><i class="fab fa-x-twitter"></i></button>
+            <button class="share-btn share-copy" onclick="copyArticleLink()" title="Copier le lien permanent"><i class="fas fa-link"></i></button>
+            <button class="share-btn share-print" onclick="window.print()" title="Imprimer ou enregistrer en PDF"><i class="fas fa-print"></i></button>
+          </div>
+        </div>
+
+        <!-- Hero Cover Image -->
+        <div class="article-hero-img-wrap" id="art-page-hero-wrap">
+          <img id="art-page-cover" src="" alt="Illustration principale de l'article" itemprop="image" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1200';" />
+        </div>
+      </header>
+
+      <!-- Main Grid: Content (Left) + Sticky Sidebar (Right) -->
+      <div class="article-body-layout">
+        <!-- Main Content Column -->
+        <div class="article-content-column">
+          <!-- Mobile Table of Contents -->
+          <div class="toc-box toc-mobile" id="art-toc-mobile">
+            <div class="toc-header"><i class="fas fa-list-ul"></i> Sommaire de l'article</div>
+            <ul id="art-toc-list-mobile" class="toc-list"></ul>
+          </div>
+
+          <!-- Rich Manuscript Prose -->
+          <div class="article-prose" id="art-page-content" itemprop="articleBody">
+            <!-- Manuscript Content injected here -->
+          </div>
+
+          <!-- Tags -->
+          <div class="article-tags-wrap">
+            <span class="tags-title"><i class="fas fa-tags"></i> Thématiques associées :</span>
+            <div id="art-page-tags" class="article-tags-list"></div>
+          </div>
+
+          <!-- Engagement Bar -->
+          <div class="article-engagement-bar">
+            <div class="engagement-left">
+              <button class="btn-like-article" id="art-like-btn" onclick="likeCurrentArticle()">
+                <i class="fas fa-heart"></i>
+                <span>J'aime cet article</span>
+                <span class="like-badge" id="art-page-likes">0</span>
+              </button>
+            </div>
+            <div class="engagement-right">
+              <button class="btn btn-outline btn-sm" onclick="showPage('blog')"><i class="fas fa-arrow-left"></i> Retour à la liste des articles</button>
+            </div>
+          </div>
+
+          <!-- Pagination: Previous / Next Articles -->
+          <div class="article-pagination-bar" id="art-pagination-bar">
+            <div class="prev-article-box" id="art-prev-box"></div>
+            <div class="next-article-box" id="art-next-box"></div>
+          </div>
+
+          <!-- Author Biography Card -->
+          <div class="author-bio-card">
+            <div class="author-bio-avatar"><i class="fas fa-user-circle"></i></div>
+            <div class="author-bio-content">
+              <h4>Expertise Académique — <span id="art-author-bio-name">L'équipe de recherche</span></h4>
+              <p>Équipe d'enseignants-chercheurs et de docteurs spécialistes en méthodologie scientifique, analyse statistique avancée (SPSS, R, Python) et préparation aux soutenances universitaires au Maroc.</p>
+              <div class="author-bio-links">
+                <a href="#services" onclick="showPage('services'); return false;"><i class="fas fa-graduation-cap"></i> Découvrir nos services d'accompagnement</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sticky Sidebar Column -->
+        <aside class="article-sidebar-column">
+          <div class="sidebar-sticky-widget">
+            <!-- Desktop Table of Contents -->
+            <div class="toc-widget-box" id="art-toc-desktop">
+              <h3 class="widget-title"><i class="fas fa-list-ul"></i> Sommaire Rapide</h3>
+              <ul id="art-toc-list-desktop" class="toc-list"></ul>
+            </div>
+
+            <!-- Citation APA 7 Widget -->
+            <div class="citation-widget-box" id="art-citation-box">
+              <div class="citation-header"><i class="fas fa-quote-left"></i> Citer cet article (APA 7)</div>
+              <div class="citation-text" id="art-citation-text">Chargement de la citation...</div>
+              <button class="btn-copy-citation" id="btn-copy-citation" onclick="copyArticleCitation()"><i class="far fa-copy"></i> Copier la référence APA</button>
+            </div>
+
+            <!-- Mentorship & Consultation Callout -->
+            <div class="sidebar-mentorship-card">
+              <div class="smc-icon"><i class="fas fa-graduation-cap"></i></div>
+              <h3>Bloqué sur votre recherche ?</h3>
+              <p>Bénéficiez d'un accompagnement personnalisé avec nos experts pour votre mémoire de Master ou thèse de Doctorat.</p>
+              <ul class="smc-benefits">
+                <li><i class="fas fa-check"></i> Formulation de problématique</li>
+                <li><i class="fas fa-check"></i> Analyse statistique SPSS / R / Python</li>
+                <li><i class="fas fa-check"></i> Scan certifié Turnitin &amp; correction</li>
+                <li><i class="fas fa-check"></i> Coaching simulation soutenance</li>
+              </ul>
+              <button class="btn btn-primary btn-full" onclick="showPage('register')">Démarrer mon Projet <i class="fas fa-arrow-right"></i></button>
+              <a href="https://wa.me/212680364052" target="_blank" class="btn btn-outline btn-full" style="margin-top:10px;background:#25D366;color:#fff;border:none"><i class="fab fa-whatsapp"></i> Conseil Express WhatsApp</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Related Articles Section -->
+      <section class="related-articles-section">
+        <div class="section-header" style="text-align:left;margin-bottom:28px">
+          <span class="section-tag">Dans la Même Thématique</span>
+          <h2>Articles Similaires Recommandés</h2>
+        </div>
+        <div id="art-related-grid" class="blog-grid blog-grid-3"></div>
+      </section>
+
+      <!-- Bottom Navigation Footer CTA -->
+      <div class="article-bottom-cta">
+        <div class="ab-cta-inner">
+          <div>
+            <h3>Prêt à réussir votre mémoire ou thèse avec mention ?</h3>
+            <p>Rejoignez plus de 155 étudiants accompagnés au Maroc par notre équipe de chercheurs.</p>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <button class="btn btn-primary btn-lg" onclick="showPage('register')">Démarrer Maintenant <i class="fas fa-arrow-right"></i></button>
+            <button class="btn btn-outline btn-lg" onclick="showPage('blog')">Tous les Articles</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Article Page Footer -->
+  <footer class="footer" style="margin-top:60px">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="nav-brand" onclick="showPage('home', true, event); return false;" role="button" tabindex="0" title="Accueil">
+            <span class="brand-icon"><svg class="logo-svg" viewBox="0 0 100 100"><use href="#ms-logo"/></svg></span>
+            <span class="brand-text">Moroccan<strong>Researcher</strong></span>
+          </div>
+          <p>La plateforme N°1 d'accompagnement académique au Maroc.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Services</h4>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Conseil en Recherche</a>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Analyse de Données</a>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Conception de Présentations</a>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Vérification Anti-Plagiat</a>
+        </div>
+        <div class="footer-links">
+          <h4>Ressources</h4>
+          <a href="#blog" onclick="showPage('blog', true, event); return false;">Tous les Articles</a>
+          <a href="#formations" onclick="showPage('formations', true, event); return false;">Formations SPSS</a>
+          <a href="#pricing" onclick="showPage('pricing', true, event); return false;">Tarifs &amp; Packs</a>
+        </div>
+        <div class="footer-links">
+          <h4>Contact &amp; Support</h4>
+          <a href="https://wa.me/212680364052" target="_blank"><i class="fab fa-whatsapp" style="color:#25D366;margin-right:4px"></i> WhatsApp : 0680364052</a>
+          <a href="mailto:contact@moroccanresearcher.com"><i class="far fa-envelope" style="margin-right:4px"></i> contact@moroccanresearcher.com</a>
+          <a href="#contact" onclick="showPage('home', true, event); scrollToSection('contact'); return false;"><i class="fas fa-paper-plane" style="margin-right:4px"></i> Formulaire de Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 MoroccanResearcher.com — Tous droits réservés.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/themoroccanresearcher" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/moroccan_researcher" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/212680364052" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ===================== PRICING PAGE ===================== -->
+<div id="page-pricing" class="page">
+  <div class="page-header-banner">
+    <div class="container">
+      <h1>Our Service Packages</h1>
+      <p>Choose your academic level to see tailored plans</p>
+    </div>
+  </div>
+  <div class="container" style="padding:60px 20px">
+
+    <!-- Level Tabs -->
+    <div class="level-tabs">
+      <button class="level-tab active" onclick="switchPricingLevel('licence', this)"><i class="fas fa-university"></i> Licence</button>
+      <button class="level-tab" onclick="switchPricingLevel('master', this)"><i class="fas fa-graduation-cap"></i> Master</button>
+      <button class="level-tab" onclick="switchPricingLevel('phd', this)"><i class="fas fa-hat-wizard"></i> Doctorat (PhD)</button>
+    </div>
+
+    <!-- ===== LICENCE ===== -->
+    <div id="pricing-licence" class="pricing-section active-pricing">
+      <div class="pricing-intro">Packages from <strong>1 500 DHS</strong> to <strong>2 000 DHS</strong></div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-badge">Essentiel</div>
+          <div class="pricing-price">1 500 <span>DHS</span></div>
+          <p class="pricing-desc">The perfect starting point for your PFE. Get clear direction, a strong research plan and expert guidance from day one.</p>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Topic selection & validation</li>
+            <li><i class="fas fa-check"></i> Structured research plan</li>
+            <li><i class="fas fa-check"></i> Annotated bibliography (30 sources)</li>
+            <li><i class="fas fa-check"></i> 2 expert consultations (1h each)</li>
+            <li><i class="fas fa-check"></i> Real-time project dashboard</li>
+            <li class="disabled"><i class="fas fa-times"></i> Data analysis support</li>
+            <li class="disabled"><i class="fas fa-times"></i> Chapter reviews</li>
+            <li class="disabled"><i class="fas fa-times"></i> Plagiarism report</li>
+          </ul>
+          <button class="btn btn-outline btn-full" onclick="goRegisterWithPack('licence','essentiel')">Get Started</button>
+        </div>
+        <div class="pricing-card popular">
+          <div class="popular-badge">Most Popular</div>
+          <div class="pricing-badge">Standard</div>
+          <div class="pricing-price">1 750 <span>DHS</span></div>
+          <p class="pricing-desc">Full-cycle PFE support — from research design to final submission, with methodology coaching and hands-on data analysis.</p>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Everything in Essentiel</li>
+            <li><i class="fas fa-check"></i> Complete methodology guide (quant/qual)</li>
+            <li><i class="fas fa-check"></i> Extended bibliography (50 sources)</li>
+            <li><i class="fas fa-check"></i> 3 expert consultations (1.5h each)</li>
+            <li><i class="fas fa-check"></i> 2 structured chapter reviews</li>
+            <li><i class="fas fa-check"></i> Data analysis support (Excel/SPSS)</li>
+            <li class="disabled"><i class="fas fa-times"></i> Plagiarism report</li>
+            <li class="disabled"><i class="fas fa-times"></i> Defense preparation</li>
+          </ul>
+          <button class="btn btn-primary btn-full" onclick="goRegisterWithPack('licence','standard')">Get Started</button>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-badge">Premium</div>
+          <div class="pricing-price">2 000 <span>DHS</span></div>
+          <p class="pricing-desc">End-to-end PFE management designed to achieve top grades — unlimited revisions, plagiarism certification and jury-ready defense coaching.</p>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Everything in Standard</li>
+            <li><i class="fas fa-check"></i> Unlimited chapter revisions</li>
+            <li><i class="fas fa-check"></i> Advanced SPSS/Excel analysis + interpretation</li>
+            <li><i class="fas fa-check"></i> Official Turnitin plagiarism report</li>
+            <li><i class="fas fa-check"></i> 5 expert consultations (2h each)</li>
+            <li><i class="fas fa-check"></i> Professional PowerPoint presentation</li>
+            <li><i class="fas fa-check"></i> Full oral defense preparation</li>
+            <li><i class="fas fa-check"></i> Priority 48h response guarantee</li>
+          </ul>
+          <button class="btn btn-outline btn-full" onclick="goRegisterWithPack('licence','premium')">Get Started</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MASTER ===== -->
+    <div id="pricing-master" class="pricing-section">
+      <div class="pricing-intro">Packages from <strong>3 000 DHS</strong> to <strong>4 000 DHS</strong></div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-badge">Chercheur</div>
+          <div class="pricing-price">3 000 <span>DHS</span></div>
+          <p class="pricing-desc">Build the academic foundations of your mémoire — a rigorous theoretical framework, clear research questions and a solid bibliography.</p>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Research problem & objectives design</li>
+            <li><i class="fas fa-check"></i> Conceptual & theoretical framework</li>
+            <li><i class="fas fa-check"></i> Exhaustive bibliography (60 sources)</li>
+            <li><i class="fas fa-check"></i> 3 expert consultations (2h each)</li>
+            <li><i class="fas fa-check"></i> Real-time project dashboard</li>
+            <li class="disabled"><i class="fas fa-times"></i> Statistical analysis</li>
+            <li class="disabled"><i class="fas fa-times"></i> Full chapter reviews</li>
+            <li class="disabled"><i class="fas fa-times"></i> Plagiarism report</li>
+          </ul>
+          <button class="btn btn-outline btn-full" onclick="goRegisterWithPack('master','chercheur')">Get Started</button>
+        </div>
+        <div class="pricing-card popular">
+          <div class="popular-badge">Most Popular</div>
+          <div class="pricing-badge">Expert</div>
+          <div class="pricing-price">3 500 <span>DHS</span></div>
+          <p class="pricing-desc">Advanced thesis coaching with full statistical analysis support — ideal for students requiring SPSS, R or quantitative modelling.</p>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Everything in Chercheur</li>
+            <li><i class="fas fa-check"></i> Advanced research methodology design</li>
+            <li><i class="fas fa-check"></i> Statistical analysis (SPSS / R)</li>
+            <li><i class="fas fa-check"></i> 4 structured chapter reviews</li>
+            <li><i class="fas fa-check"></i> 5 expert consultations (2h each)</li>
+            <li><i class="fas fa-check"></i> Turnitin plagiarism check</li>
+            <li><i class="fas fa-check"></i> Results interpretation & discussion</li>
+            <li class="disabled"><i class="fas fa-times"></i> Defense simulation</li>
+          </ul>
+          <button class="btn btn-primary btn-full" onclick="goRegisterWithPack('master','expert')">Get Started</button>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-badge">Excellence</div>
+          <div class="pricing-price">4 000 <span>DHS</span></div>
+          <p class="pricing-desc">Complete mémoire management from first draft to jury defense — built for students targeting a Mention Très Bien.</p>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Everything in Expert</li>
+            <li><i class="fas fa-check"></i> Unlimited chapter support & revisions</li>
+            <li><i class="fas fa-check"></i> Python / R advanced data modelling</li>
+            <li><i class="fas fa-check"></i> 7 expert consultations (2h each)</li>
+            <li><i class="fas fa-check"></i> iThenticate plagiarism report</li>
+            <li><i class="fas fa-check"></i> Defense presentation (PowerPoint)</li>
+            <li><i class="fas fa-check"></i> Jury defense simulation session</li>
+            <li><i class="fas fa-check"></i> VIP priority 24h response</li>
+          </ul>
+          <button class="btn btn-outline btn-full" onclick="goRegisterWithPack('master','excellence')">Get Started</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PHD ===== -->
+    <div id="pricing-phd" class="pricing-section">
+      <div class="pricing-intro">Packages from <strong>8 000 DHS</strong> to <strong>15 000 DHS</strong></div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-badge">Doctoral</div>
+          <div class="pricing-price">8 000 <span>DHS</span></div>
+          <p class="pricing-desc">Structured doctoral support to establish a publishable research foundation — from proposal validation to methodology approval by your jury.</p>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Research proposal design & validation</li>
+            <li><i class="fas fa-check"></i> Exhaustive literature review (100+ sources)</li>
+            <li><i class="fas fa-check"></i> Conceptual & epistemological framework</li>
+            <li><i class="fas fa-check"></i> Methodology design (quant/qual/mixed)</li>
+            <li><i class="fas fa-check"></i> 4 expert consultations (3h each)</li>
+            <li><i class="fas fa-check"></i> 3 chapter reviews</li>
+            <li class="disabled"><i class="fas fa-times"></i> Journal article preparation</li>
+            <li class="disabled"><i class="fas fa-times"></i> Advanced statistical modelling</li>
+          </ul>
+          <button class="btn btn-outline btn-full" onclick="goRegisterWithPack('phd','doctoral')">Get Started</button>
+        </div>
+        <div class="pricing-card popular">
+          <div class="popular-badge">Most Popular</div>
+          <div class="pricing-badge">Distinction</div>
+          <div class="pricing-price">11 000 <span>DHS</span></div>
+          <p class="pricing-desc">Full dissertation guidance with journal indexing support — designed for PhD candidates targeting Scopus or Web of Science publications.</p>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Everything in Doctoral</li>
+            <li><i class="fas fa-check"></i> Advanced mixed methods research</li>
+            <li><i class="fas fa-check"></i> Statistical modelling (R / Python / SPSS)</li>
+            <li><i class="fas fa-check"></i> 6 full chapter reviews + corrections</li>
+            <li><i class="fas fa-check"></i> 1 journal article preparation (Scopus/WoS)</li>
+            <li><i class="fas fa-check"></i> 7 expert consultations (3h each)</li>
+            <li><i class="fas fa-check"></i> iThenticate + Turnitin dual report</li>
+            <li><i class="fas fa-check"></i> Pre-defense review session</li>
+          </ul>
+          <button class="btn btn-primary btn-full" onclick="goRegisterWithPack('phd','distinction')">Get Started</button>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-badge">Summa Cum Laude</div>
+          <div class="pricing-price">15 000 <span>DHS</span></div>
+          <p class="pricing-desc">The complete PhD journey — from research proposal to public defense, 2 international publications and a lifetime academic legacy.</p>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Everything in Distinction</li>
+            <li><i class="fas fa-check"></i> Full dissertation writing support (all chapters)</li>
+            <li><i class="fas fa-check"></i> 2 journal article submissions (indexed)</li>
+            <li><i class="fas fa-check"></i> Conference abstract & poster preparation</li>
+            <li><i class="fas fa-check"></i> Unlimited expert consultations</li>
+            <li><i class="fas fa-check"></i> Full defense simulation + jury coaching</li>
+            <li><i class="fas fa-check"></i> VIP dedicated researcher assigned</li>
+            <li><i class="fas fa-check"></i> 24h emergency priority support</li>
+          </ul>
+          <button class="btn btn-outline btn-full" onclick="goRegisterWithPack('phd','summa')">Get Started</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== STANDALONE SERVICES ===== -->
+    <div class="standalone-section">
+      <div class="section-header" style="margin-bottom:40px">
+        <span class="section-tag">À la Carte</span>
+        <h2>Standalone Services</h2>
+        <p>Book individual services without a full package — flexible support for every need.</p>
+      </div>
+      <div class="standalone-grid">
+        <div class="standalone-card">
+          <div class="standalone-icon" style="background:#e3f2fd;color:#1565c0"><i class="fas fa-chart-bar"></i></div>
+          <div class="standalone-content">
+            <h3>SPSS Training</h3>
+            <p>Master statistical analysis with hands-on SPSS coaching. Work on real academic datasets, learn descriptive stats, regression, ANOVA and more — directly applicable to your research.</p>
+            <ul class="standalone-features">
+              <li><i class="fas fa-check-circle"></i> 2 sessions per week (1.5h each)</li>
+              <li><i class="fas fa-check-circle"></i> 8 sessions over 1 month</li>
+              <li><i class="fas fa-check-circle"></i> Real dataset practice included</li>
+              <li><i class="fas fa-check-circle"></i> Course materials & exercises provided</li>
+              <li><i class="fas fa-check-circle"></i> Certificate of completion</li>
+            </ul>
+          </div>
+          <div class="standalone-price-wrap">
+            <div class="standalone-price">500 <span>DHS</span></div>
+            <div class="standalone-period">/ month</div>
+            <button class="btn btn-primary btn-full" onclick="showPage('register')" style="margin-top:16px">Book Now</button>
+          </div>
+        </div>
+
+        <div class="standalone-card">
+          <div class="standalone-icon" style="background:#fce4ec;color:#c0392b"><i class="fas fa-search"></i></div>
+          <div class="standalone-content">
+            <h3>Plagiarism Check</h3>
+            <p>Get a certified similarity report for your academic work before submission. We use industry-leading tools (Turnitin / iThenticate) and provide actionable correction recommendations.</p>
+            <ul class="standalone-features">
+              <li><i class="fas fa-check-circle"></i> Turnitin or iThenticate scan</li>
+              <li><i class="fas fa-check-circle"></i> Full detailed similarity report</li>
+              <li><i class="fas fa-check-circle"></i> Source-by-source breakdown</li>
+              <li><i class="fas fa-check-circle"></i> Correction recommendations</li>
+              <li><i class="fas fa-check-circle"></i> Results delivered within 24h</li>
+            </ul>
+          </div>
+          <div class="standalone-price-wrap">
+            <div class="standalone-price">150–300 <span>DHS</span></div>
+            <div class="standalone-period">per document</div>
+            <button class="btn btn-primary btn-full" onclick="showPage('register')" style="margin-top:16px">Book Now</button>
+          </div>
+        </div>
+
+        <div class="standalone-card">
+          <div class="standalone-icon" style="background:#e8f5e9;color:#2e7d32"><i class="fas fa-flask"></i></div>
+          <div class="standalone-content">
+            <h3>Research Methodology Training</h3>
+            <p>A structured monthly training covering qualitative, quantitative and mixed methods research — essential for any student building a rigorous academic study.</p>
+            <ul class="standalone-features">
+              <li><i class="fas fa-check-circle"></i> 2 sessions per week (1.5h each)</li>
+              <li><i class="fas fa-check-circle"></i> 8 sessions over 1 month</li>
+              <li><i class="fas fa-check-circle"></i> Quant, qual & mixed methods covered</li>
+              <li><i class="fas fa-check-circle"></i> Practical exercises on your own topic</li>
+              <li><i class="fas fa-check-circle"></i> Study guide & reference templates</li>
+            </ul>
+          </div>
+          <div class="standalone-price-wrap">
+            <div class="standalone-price">500 <span>DHS</span></div>
+            <div class="standalone-period">/ month</div>
+            <button class="btn btn-primary btn-full" onclick="showPage('register')" style="margin-top:16px">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Pricing Page Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="nav-brand" onclick="showPage('home', true, event); return false;" role="button" tabindex="0" title="Accueil">
+            <span class="brand-icon"><svg class="logo-svg" viewBox="0 0 100 100"><use href="#ms-logo"/></svg></span>
+            <span class="brand-text">Moroccan<strong>Researcher</strong></span>
+          </div>
+          <p>La plateforme N°1 d'accompagnement académique au Maroc.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Services</h4>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Conseil en Recherche</a>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Analyse de Données</a>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Conception de Présentations</a>
+          <a href="#services" onclick="showPage('services', true, event); return false;">Vérification Anti-Plagiat</a>
+        </div>
+        <div class="footer-links">
+          <h4>Ressources</h4>
+          <a href="#blog" onclick="showPage('blog', true, event); return false;">Tous les Articles</a>
+          <a href="#formations" onclick="showPage('formations', true, event); return false;">Formations SPSS</a>
+          <a href="#pricing" onclick="showPage('pricing', true, event); return false;">Tarifs &amp; Packs</a>
+        </div>
+        <div class="footer-links">
+          <h4>Contact &amp; Support</h4>
+          <a href="https://wa.me/212680364052" target="_blank"><i class="fab fa-whatsapp" style="color:#25D366;margin-right:4px"></i> WhatsApp : 0680364052</a>
+          <a href="mailto:contact@moroccanresearcher.com"><i class="far fa-envelope" style="margin-right:4px"></i> contact@moroccanresearcher.com</a>
+          <a href="#contact" onclick="showPage('home', true, event); scrollToSection('contact'); return false;"><i class="fas fa-paper-plane" style="margin-right:4px"></i> Formulaire de Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 MoroccanResearcher.com — Tous droits réservés.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/themoroccanresearcher" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/moroccan_researcher" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/212680364052" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ===================== REGISTER PAGE ===================== -->
+<div id="page-register" class="page">
+  <div class="auth-container">
+    <div class="auth-left">
+      <div class="auth-logo-wrap">
+        <div class="auth-logo-icon">
+          <svg viewBox="0 0 100 100"><use href="#ms-logo"/></svg>
+        </div>
+        <span class="auth-logo-text">Moroccan<strong>Researcher</strong></span>
+      </div>
+      <h2>Commencez Votre Parcours Académique</h2>
+      <p>Rejoignez plus de 155 étudiants marocains qui ont atteint l'excellence académique grâce à notre accompagnement.</p>
+      <div class="auth-illustration">
+        <div class="moroccan-pattern-sm"></div>
+      </div>
+    </div>
+    <div class="auth-right">
+      <!-- Étape 1 : Informations personnelles -->
+      <div id="reg-step1" class="reg-step active-step">
+        <div class="auth-step-indicator">
+          <span class="step active">1</span><span class="step-line"></span>
+          <span class="step">2</span><span class="step-line"></span>
+          <span class="step">3</span><span class="step-line"></span>
+          <span class="step">4</span>
+        </div>
+        <h3>Créer Votre Compte</h3>
+        <p class="auth-sub">Informations personnelles</p>
+        <div class="form-group"><label>Nom Complet</label><input type="text" id="reg-name" placeholder="Ahmed Benali" /></div>
+        <div class="form-row">
+          <div class="form-group"><label>Email</label><input type="email" id="reg-email" placeholder="vous@email.com" /></div>
+          <div class="form-group"><label>Téléphone</label><input type="tel" id="reg-phone" placeholder="+212 6XX XXX XXX" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Mot de Passe</label><input type="password" id="reg-pass" placeholder="••••••••" /></div>
+          <div class="form-group"><label>Université</label><input type="text" id="reg-uni" placeholder="Université Mohammed V" /></div>
+        </div>
+        <button class="btn btn-primary btn-full" onclick="regStep1Next()">Continuer <i class="fas fa-arrow-right"></i></button>
+        <p class="auth-switch">Vous avez déjà un compte ? <a href="javascript:void(0)" onclick="showPage('login',true,event)">Se Connecter</a></p>
+      </div>
+
+      <!-- Étape 2 : Choix du niveau -->
+      <div id="reg-step2" class="reg-step">
+        <div class="auth-step-indicator">
+          <span class="step done">✓</span><span class="step-line active-line"></span>
+          <span class="step active">2</span><span class="step-line"></span>
+          <span class="step">3</span><span class="step-line"></span>
+          <span class="step">4</span>
+        </div>
+        <h3>Choisissez Votre Niveau</h3>
+        <p class="auth-sub">Sélectionnez votre niveau académique actuel</p>
+        <div class="level-cards">
+          <div class="level-card" onclick="selectLevel('licence', this)">
+            <div class="level-icon"><i class="fas fa-university"></i></div>
+            <h4>Licence</h4>
+            <p>Bac +3<br>PFE / Projet de fin d'études</p>
+          </div>
+          <div class="level-card" onclick="selectLevel('master', this)">
+            <div class="level-icon"><i class="fas fa-graduation-cap"></i></div>
+            <h4>Master</h4>
+            <p>Bac +5<br>Mémoire de master</p>
+          </div>
+          <div class="level-card" onclick="selectLevel('phd', this)">
+            <div class="level-icon"><i class="fas fa-hat-wizard"></i></div>
+            <h4>Doctorat</h4>
+            <p>Programme PhD<br>Thèse de doctorat</p>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-outline" onclick="regGoStep(1)"><i class="fas fa-arrow-left"></i> Retour</button>
+          <button class="btn btn-primary" onclick="regStep2Next()">Voir les Packs <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Étape 3 : Choix du pack -->
+      <div id="reg-step3" class="reg-step">
+        <div class="auth-step-indicator">
+          <span class="step done">✓</span><span class="step-line active-line"></span>
+          <span class="step done">✓</span><span class="step-line active-line"></span>
+          <span class="step active">3</span><span class="step-line"></span>
+          <span class="step">4</span>
+        </div>
+        <h3>Choisissez Votre Pack</h3>
+        <p class="auth-sub">Sélectionnez le plan qui correspond à vos besoins</p>
+        <div id="pack-options" class="pack-options"></div>
+        <div class="btn-row">
+          <button class="btn btn-outline" onclick="regGoStep(2)"><i class="fas fa-arrow-left"></i> Retour</button>
+          <button class="btn btn-primary" onclick="regStep3Next()">Suivant <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Étape 4 : Détails du projet -->
+      <div id="reg-step4" class="reg-step">
+        <div class="auth-step-indicator">
+          <span class="step done">✓</span><span class="step-line active-line"></span>
+          <span class="step done">✓</span><span class="step-line active-line"></span>
+          <span class="step done">✓</span><span class="step-line active-line"></span>
+          <span class="step active">4</span>
+        </div>
+        <h3>Décrivez Votre Projet</h3>
+        <p class="auth-sub">Ces informations aident votre expert à préparer votre accompagnement</p>
+        <div class="form-group">
+          <label>Titre du Projet <span class="required-star">*</span></label>
+          <input type="text" id="proj-title" placeholder="Ex : Impact du E-commerce sur le comportement d'achat au Maroc" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Domaine / Spécialité <span class="required-star">*</span></label>
+            <input type="text" id="proj-domain" placeholder="Ex : Marketing, Finance, Informatique…" />
+          </div>
+          <div class="form-group">
+            <label>Date de Soutenance Souhaitée</label>
+            <input type="date" id="proj-deadline" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Description Brève du Projet</label>
+          <textarea id="proj-desc" rows="3" placeholder="Décrivez en quelques lignes votre sujet, vos objectifs et votre problématique de recherche…"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Informations Complémentaires</label>
+          <textarea id="proj-notes" rows="2" placeholder="Contraintes particulières, outils requis, langue de rédaction, remarques pour votre expert…"></textarea>
+        </div>
+        <div class="proj-summary-box" id="proj-summary-box">
+          <div class="proj-summary-row"><span>Niveau :</span> <strong id="sum-level">—</strong></div>
+          <div class="proj-summary-row"><span>Pack :</span> <strong id="sum-pack">—</strong></div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-outline" onclick="regGoStep(3)"><i class="fas fa-arrow-left"></i> Retour</button>
+          <button class="btn btn-primary" onclick="completeRegistration()">Créer Mon Compte <i class="fas fa-check"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== LOGIN PAGE ===================== -->
+<div id="page-login" class="page">
+  <div class="auth-container">
+    <div class="auth-left">
+      <div class="auth-logo-wrap">
+        <div class="auth-logo-icon">
+          <svg viewBox="0 0 100 100"><use href="#ms-logo"/></svg>
+        </div>
+        <span class="auth-logo-text">Moroccan<strong>Researcher</strong></span>
+      </div>
+      <h2>Bon Retour Parmi Nous</h2>
+      <p>Connectez-vous pour accéder à votre tableau de bord et suivre l'avancement de votre projet académique.</p>
+      <div class="auth-testimonial">
+        <p>« Grâce à MoroccanResearcher, j'ai soutenu mon mémoire de Master avec mention très bien ! »</p>
+        <strong>— Fatima Z., Université Cadi Ayyad</strong>
+      </div>
+    </div>
+    <div class="auth-right" style="justify-content:center">
+      <div class="auth-brand-mobile">
+        <span class="brand-icon"><svg class="logo-svg" viewBox="0 0 100 100"><use href="#ms-logo"/></svg></span>
+        <span class="brand-text">Moroccan<strong>Researcher</strong></span>
+      </div>
+      <h3>Connexion</h3>
+      <p class="auth-sub">Accédez à votre espace personnel</p>
+      <div class="form-group"><label>Email</label><input type="email" id="login-email" placeholder="vous@email.com" /></div>
+      <div class="form-group"><label>Mot de Passe</label><input type="password" id="login-pass" placeholder="••••••••" /></div>
+      <div id="login-error" class="error-msg" style="display:none"></div>
+      <button class="btn btn-primary btn-full" onclick="handleLogin()">Se Connecter <i class="fas fa-sign-in-alt"></i></button>
+      <div class="demo-logins">
+        <p class="demo-title">Comptes de Démonstration :</p>
+        <button class="demo-btn" onclick="fillDemo('admin@moroccanresearcher.com','admin123')"><i class="fas fa-shield-alt"></i> Connexion Admin</button>
+        <button class="demo-btn" onclick="fillDemo('ahmed@student.ma','student123')"><i class="fas fa-user-graduate"></i> Connexion Étudiant</button>
+      </div>
+      <p class="auth-switch">Pas encore de compte ? <a href="javascript:void(0)" onclick="showPage('register',true,event)">S'inscrire</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== USER DASHBOARD ===================== -->
+<div id="page-user-dashboard" class="page">
+  <div class="dashboard-layout">
+    <div class="sidebar-backdrop" id="userSidebarBackdrop" onclick="closeSidebar('userSidebar')"></div>
+    <aside class="sidebar" id="userSidebar">
+      <div class="sidebar-brand" onclick="showPage('home')" style="cursor:pointer" title="Back to Home">
+        <div class="sidebar-logo-icon">
+          <svg viewBox="0 0 100 100"><use href="#ms-logo"/></svg>
+        </div>
+        <div class="sidebar-brand-text">
+          <span>Moroccan</span><strong>Researcher</strong>
+          <div class="sidebar-brand-sub">Student Portal</div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="javascript:void(0)" class="nav-item active" onclick="showDashTab('user','overview',this,event)"><i class="fas fa-th-large"></i><span>Tableau de Bord</span></a>
+        <a href="javascript:void(0)" class="nav-item" onclick="showDashTab('user','project',this,event)"><i class="fas fa-tasks"></i><span>Mon Projet</span></a>
+        <a href="javascript:void(0)" class="nav-item" onclick="showDashTab('user','documents',this,event)"><i class="fas fa-folder"></i><span>Documents</span></a>
+        <a href="javascript:void(0)" class="nav-item" onclick="showDashTab('user','messages',this,event)"><i class="fas fa-comments"></i><span>Messages</span></a>
+        <a href="javascript:void(0)" class="nav-item" onclick="showDashTab('user','profile',this,event)"><i class="fas fa-user"></i><span>Mon Profil</span></a>
+      </nav>
+      <div class="sidebar-bottom">
+        <a href="javascript:void(0)" class="nav-item nav-home-link" onclick="showPage('home',true,event)"><i class="fas fa-globe"></i><span>Retour au Site</span></a>
+        <button class="sidebar-logout" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i><span>Déconnexion</span></button>
+      </div>
+    </aside>
+    <main class="dashboard-main">
+      <div class="dash-topbar">
+        <button class="sidebar-toggle" onclick="toggleSidebar('userSidebar')"><i class="fas fa-bars"></i></button>
+        <div class="dash-welcome">
+          <h2 id="user-greeting">Good morning, Ahmed!</h2>
+          <p id="user-date"></p>
+        </div>
+        <div class="dash-topbar-right">
+          <div class="notif-btn" id="user-notif-btn" onclick="toggleNotifDropdown()" title="Notifications">
+            <i class="fas fa-bell"></i>
+            <span class="notif-badge" id="user-notif-count" style="display:none">0</span>
+            <div class="notif-dropdown" id="notif-dropdown">
+              <div class="notif-dropdown-header">
+                <span>Notifications</span>
+                <button onclick="markAllNotifRead(event)">Tout marquer lu</button>
+              </div>
+              <div class="notif-list" id="notif-list"></div>
+            </div>
+          </div>
+          <div class="avatar-btn" id="user-avatar" onclick="showDashTab('user','profile', document.querySelector('#userSidebar .nav-item:last-of-type'))" title="Mon Profil">AZ</div>
+        </div>
+      </div>
+
+      <!-- Overview Tab -->
+      <div id="user-tab-overview" class="dash-tab active-tab">
+        <div class="kpi-grid">
+          <div class="kpi-card" style="--c:#c0392b">
+            <div class="kpi-icon"><i class="fas fa-tasks"></i></div>
+            <div class="kpi-content"><div class="kpi-value" id="user-kpi-progress">0%</div><div class="kpi-label">Avancement du Projet</div></div>
+          </div>
+          <div class="kpi-card" style="--c:#2c7873">
+            <div class="kpi-icon"><i class="fas fa-calendar-check"></i></div>
+            <div class="kpi-content"><div class="kpi-value" id="user-kpi-days">--</div><div class="kpi-label">Jours Avant la Date Limite</div></div>
+          </div>
+          <div class="kpi-card" style="--c:#f39c12">
+            <div class="kpi-icon"><i class="fas fa-check-circle"></i></div>
+            <div class="kpi-content"><div class="kpi-value" id="user-kpi-milestones">0/0</div><div class="kpi-label">Étapes Complétées</div></div>
+          </div>
+          <div class="kpi-card" style="--c:#8e44ad">
+            <div class="kpi-icon"><i class="fas fa-star"></i></div>
+            <div class="kpi-content"><div class="kpi-value" id="user-kpi-pack">—</div><div class="kpi-label">Pack Actif</div></div>
+          </div>
+        </div>
+
+        <div class="dash-grid-2">
+          <div class="dash-card">
+            <div class="dash-card-header"><h3><i class="fas fa-chart-line"></i> Avancement du Projet</h3></div>
+            <div class="progress-visual">
+              <div class="big-progress-ring">
+                <svg viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="54" stroke="#f0f0f0" stroke-width="10" fill="none"/>
+                  <circle cx="60" cy="60" r="54" stroke="#c0392b" stroke-width="10" fill="none"
+                    stroke-dasharray="339.3" id="user-progress-ring" stroke-dashoffset="339.3"
+                    stroke-linecap="round" transform="rotate(-90 60 60)"/>
+                </svg>
+                <div class="ring-text" id="user-ring-pct">0%</div>
+              </div>
+              <div class="milestones-list" id="user-milestones-list"></div>
+            </div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-header"><h3><i class="fas fa-info-circle"></i> Informations du Projet</h3></div>
+            <div class="info-list" id="user-project-info"></div>
+          </div>
+        </div>
+
+        <div class="dash-card mt-20">
+          <div class="dash-card-header"><h3><i class="fas fa-history"></i> Activité Récente</h3></div>
+          <div class="activity-feed" id="user-activity-feed"></div>
+        </div>
+      </div>
+
+      <!-- Project Tab -->
+      <div id="user-tab-project" class="dash-tab">
+        <div class="dash-card">
+          <div class="dash-card-header"><h3><i class="fas fa-project-diagram"></i> Calendrier du Projet</h3></div>
+          <div class="timeline" id="user-timeline"></div>
+        </div>
+        <div class="dash-card mt-20">
+          <div class="dash-card-header"><h3><i class="fas fa-clipboard-list"></i> Statut Actuel</h3></div>
+          <div id="user-status-detail"></div>
+        </div>
+      </div>
+
+      <!-- Documents Tab -->
+      <div id="user-tab-documents" class="dash-tab">
+        <div class="dash-card">
+          <div class="dash-card-header"><h3><i class="fas fa-folder-open"></i> Documents du Projet</h3></div>
+          <div class="docs-list" id="user-docs-list"></div>
+        </div>
+      </div>
+
+      <!-- Messages Tab -->
+      <div id="user-tab-messages" class="dash-tab">
+        <div class="dash-card">
+          <div class="dash-card-header"><h3><i class="fas fa-comments"></i> Messages de Votre Expert</h3></div>
+          <div class="messages-list" id="user-messages-list"></div>
+          <div class="message-compose">
+            <input type="text" id="user-msg-input" placeholder="Écrivez votre message..." />
+            <button class="btn btn-primary" onclick="sendUserMessage()"><i class="fas fa-paper-plane"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Tab -->
+      <div id="user-tab-profile" class="dash-tab">
+        <div class="dash-card">
+          <div class="dash-card-header"><h3><i class="fas fa-user-circle"></i> Mon Profil</h3></div>
+          <div class="profile-view" id="user-profile-view"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ===================== ADMIN DASHBOARD ===================== -->
+<div id="page-admin-dashboard" class="page">
+  <div class="dashboard-layout">
+    <div class="sidebar-backdrop" id="adminSidebarBackdrop" onclick="closeSidebar('adminSidebar')"></div>
+    <aside class="sidebar admin-sidebar" id="adminSidebar">
+      <div class="sidebar-brand" onclick="showPage('home')" style="cursor:pointer" title="Back to Home">
+        <div class="sidebar-logo-icon">
+          <svg viewBox="0 0 100 100"><use href="#ms-logo"/></svg>
+        </div>
+        <div class="sidebar-brand-text">
+          <span>Moroccan</span><strong>Researcher</strong>
+          <div class="sidebar-brand-sub">Admin Panel</div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="javascript:void(0)" class="nav-item active" onclick="showDashTab('admin','overview',this,event)"><i class="fas fa-tachometer-alt"></i><span>Tableau de Bord</span></a>
+        <a href="javascript:void(0)" class="nav-item" onclick="showDashTab('admin','articles',this,event)"><i class="fas fa-newspaper"></i><span>Gestion Articles</span></a>
+        <a href="javascript:void(0)" class="nav-item" onclick="showDashTab('admin','contacts',this,event)"><i class="fas fa-envelope-open-text"></i><span>Demandes Contact</span></a>
+        <a href="javascript:void(0)" class="nav-item" onclick="showDashTab('admin','projects',this,event)"><i class="fas fa-folder-open"></i><span>Tous les Projets</span></a>
+        <a href="javascript:void(0)" class="nav-item" onclick="showDashTab('admin','clients',this,event)"><i class="fas fa-user-graduate"></i><span>Inscrits & Chercheurs</span></a>
+        <a href="javascript:void(0)" class="nav-item" onclick="showDashTab('admin','messages',this,event)"><i class="fas fa-comments"></i><span>Messagerie</span></a>
+        <a href="javascript:void(0)" class="nav-item" onclick="showDashTab('admin','security',this,event)"><i class="fas fa-shield-alt"></i><span>Sécurité & Logs</span></a>
+        <a href="javascript:void(0)" class="nav-item" onclick="showDashTab('admin','settings',this,event)"><i class="fas fa-cog"></i><span>Paramètres</span></a>
+      </nav>
+      <div class="sidebar-bottom">
+        <a href="javascript:void(0)" class="nav-item nav-home-link" onclick="showPage('home',true,event)"><i class="fas fa-globe"></i><span>Voir le Site</span></a>
+        <button class="sidebar-logout" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i><span>Déconnexion</span></button>
+      </div>
+    </aside>
+    <main class="dashboard-main">
+      <div class="dash-topbar">
+        <button class="sidebar-toggle" onclick="toggleSidebar('adminSidebar')"><i class="fas fa-bars"></i></button>
+        <div class="dash-welcome">
+          <h2>Tableau de Bord Admin</h2>
+          <p id="admin-date"></p>
+        </div>
+        <div class="dash-topbar-right">
+          <div class="notif-btn"><i class="fas fa-bell"></i><span class="notif-badge" id="admin-notif-count">0</span></div>
+          <div class="avatar-btn admin-avatar">AD</div>
+        </div>
+      </div>
+
+      <!-- Admin Overview Tab -->
+      <div id="admin-tab-overview" class="dash-tab active-tab">
+        <div class="kpi-grid">
+          <div class="kpi-card" style="--c:#c0392b;cursor:pointer" onclick="showDashTab('admin','clients',null,event)" title="Voir les Chercheurs">
+            <div class="kpi-icon"><i class="fas fa-users"></i></div>
+            <div class="kpi-content"><div class="kpi-value" id="admin-kpi-clients">0</div><div class="kpi-label">Total Clients</div></div>
+          </div>
+          <div class="kpi-card" style="--c:#2c7873;cursor:pointer" onclick="showDashTab('admin','projects',null,event)" title="Voir les Projets">
+            <div class="kpi-icon"><i class="fas fa-project-diagram"></i></div>
+            <div class="kpi-content"><div class="kpi-value" id="admin-kpi-projects">0</div><div class="kpi-label">Projets Actifs</div></div>
+          </div>
+          <div class="kpi-card" style="--c:#e67e22;cursor:pointer" onclick="showDashTab('admin','articles',null,event)" title="Gérer les Articles">
+            <div class="kpi-icon"><i class="fas fa-newspaper"></i></div>
+            <div class="kpi-content"><div class="kpi-value" id="admin-kpi-articles">0</div><div class="kpi-label">Articles Blog</div></div>
+          </div>
+          <div class="kpi-card" style="--c:#8e44ad;cursor:pointer" onclick="showDashTab('admin','contacts',null,event)" title="Voir les Demandes de Contact">
+            <div class="kpi-icon"><i class="fas fa-envelope-open-text"></i></div>
+            <div class="kpi-content"><div class="kpi-value" id="admin-kpi-contacts">0</div><div class="kpi-label">Demandes Contact</div></div>
+          </div>
+          <div class="kpi-card" style="--c:#f39c12">
+            <div class="kpi-icon"><i class="fas fa-check-double"></i></div>
+            <div class="kpi-content"><div class="kpi-value" id="admin-kpi-completed">0</div><div class="kpi-label">Terminés</div></div>
+          </div>
+          <div class="kpi-card" style="--c:#27ae60">
+            <div class="kpi-icon"><i class="fas fa-coins"></i></div>
+            <div class="kpi-content"><div class="kpi-value" id="admin-kpi-revenue">0 DHS</div><div class="kpi-label">Chiffre d'Affaires</div></div>
+          </div>
+        </div>
+        <div class="dash-grid-2 mt-20">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h3><i class="fas fa-user-graduate"></i> Dernières Inscriptions (Chercheurs)</h3>
+              <button class="btn btn-sm btn-primary" onclick="showDashTab('admin','clients',null)">Voir Tous les Inscrits</button>
+            </div>
+            <div id="admin-recent-users"></div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h3><i class="fas fa-clock"></i> Projets Récents</h3>
+              <button class="btn btn-sm btn-primary" onclick="showDashTab('admin','projects',null)">Voir Tout</button>
+            </div>
+            <div id="admin-recent-projects"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Articles Tab -->
+      <div id="admin-tab-articles" class="dash-tab">
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <div>
+              <h3><i class="fas fa-newspaper"></i> Gestion des Articles & Blog</h3>
+              <p style="font-size:13px;color:#777;margin-top:2px">Rédigez, modifiez, prévisualisez et publiez les articles et tutoriels du blog.</p>
+            </div>
+            <button class="btn btn-primary" onclick="openAdminArticleModal()"><i class="fas fa-plus"></i> Nouvel Article</button>
+          </div>
+          <div class="filter-row" style="margin-bottom:20px;display:flex;gap:12px">
+            <div class="search-input-wrap" style="flex:1">
+              <i class="fas fa-search"></i>
+              <input type="text" id="filter-article-search" placeholder="Rechercher par titre, auteur..." oninput="renderAdminArticles()" class="filter-input" />
+            </div>
+            <select id="filter-article-cat" onchange="renderAdminArticles()" class="filter-select">
+              <option value="">Toutes les Catégories</option>
+              <option value="Méthodologie">Méthodologie</option>
+              <option value="SPSS & Statistiques">SPSS & Statistiques</option>
+              <option value="Rédaction & APA">Rédaction & APA</option>
+              <option value="Soutenance">Soutenance</option>
+            </select>
+          </div>
+          <div id="admin-articles-table"></div>
+        </div>
+      </div>
+
+      <!-- Admin Contacts Tab -->
+      <div id="admin-tab-contacts" class="dash-tab">
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <div>
+              <h3><i class="fas fa-envelope-open-text"></i> Demandes de Contact & Visiteurs</h3>
+              <p style="font-size:13px;color:#777;margin-top:2px">Suivi des messages envoyés depuis le formulaire de contact, triage et réponses.</p>
+            </div>
+            <button class="btn btn-outline" onclick="exportContactsCSV()"><i class="fas fa-file-excel"></i> Exporter CSV</button>
+          </div>
+          <div class="filter-row" style="margin-bottom:20px;display:flex;gap:12px">
+            <div class="search-input-wrap" style="flex:1">
+              <i class="fas fa-search"></i>
+              <input type="text" id="filter-contact-search" placeholder="Rechercher par expéditeur, email, sujet..." oninput="renderAdminContacts()" class="filter-input" />
+            </div>
+            <select id="filter-contact-status" onchange="renderAdminContacts()" class="filter-select">
+              <option value="">Tous les Statuts</option>
+              <option value="Nouveau">Nouveau</option>
+              <option value="En cours">En cours</option>
+              <option value="Répondu">Répondu</option>
+            </select>
+          </div>
+          <div id="admin-contacts-table"></div>
+        </div>
+      </div>
+
+      <!-- Admin Security Tab -->
+      <div id="admin-tab-security" class="dash-tab">
+        <div class="dash-grid-2">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h3><i class="fas fa-lock"></i> Sécurité du Compte Administrateur</h3>
+            </div>
+            <div class="form-group"><label>Mot de Passe Actuel</label><input type="password" id="admin-curr-pass" placeholder="••••••••" /></div>
+            <div class="form-group"><label>Nouveau Mot de Passe (min. 6 caractères)</label><input type="password" id="admin-new-pass" placeholder="••••••••" /></div>
+            <div class="form-group"><label>Confirmer le Nouveau Mot de Passe</label><input type="password" id="admin-conf-pass" placeholder="••••••••" /></div>
+            <button class="btn btn-primary" onclick="handleAdminChangePassword()"><i class="fas fa-shield-alt"></i> Mettre à Jour le Mot de Passe</button>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h3><i class="fas fa-database"></i> Sauvegardes & Instantanés</h3>
+            </div>
+            <p style="font-size:13px;color:#666;margin-bottom:16px">Téléchargez un instantané JSON complet de toutes les données (Articles, Messages, Projets, Utilisateurs) ou restaurez une version précédente.</p>
+            <button class="btn btn-outline btn-full" onclick="handleDownloadBackup()" style="margin-bottom:16px"><i class="fas fa-download"></i> Télécharger Sauvegarde JSON</button>
+            <div class="form-group">
+              <label>Restaurer depuis un JSON</label>
+              <textarea id="restore-json-input" rows="3" placeholder="Collez le contenu JSON de sauvegarde ici..."></textarea>
+            </div>
+            <button class="btn btn-secondary btn-full" onclick="handleRestoreBackup()"><i class="fas fa-upload"></i> Restaurer la Sauvegarde</button>
+          </div>
+        </div>
+        <div class="dash-card mt-20">
+          <div class="dash-card-header">
+            <h3><i class="fas fa-history"></i> Journal d'Audit de Sécurité</h3>
+          </div>
+          <table class="data-table">
+            <thead><tr><th>Action</th><th>Détails de l'Événement</th><th>Horodatage</th></tr></thead>
+            <tbody id="admin-audit-logs-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Admin Projects Tab -->
+      <div id="admin-tab-projects" class="dash-tab">
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <h3><i class="fas fa-folder-open"></i> Tous les Projets</h3>
+            <div class="filter-row">
+              <select id="filter-level" onchange="renderAdminProjects()" class="filter-select">
+                <option value="">Tous les Niveaux</option>
+                <option value="licence">Licence</option>
+                <option value="master">Master</option>
+                <option value="phd">PhD</option>
+              </select>
+              <select id="filter-status" onchange="renderAdminProjects()" class="filter-select">
+                <option value="">Tous les Statuts</option>
+                <option value="En attente">En attente</option>
+                <option value="En cours">En cours</option>
+                <option value="En révision">En révision</option>
+                <option value="Terminé">Terminé</option>
+              </select>
+            </div>
+          </div>
+          <div id="admin-projects-table"></div>
+        </div>
+      </div>
+
+      <!-- Admin Clients / Inscrits Tab -->
+      <div id="admin-tab-clients" class="dash-tab">
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <div>
+              <h3><i class="fas fa-user-graduate"></i> Utilisateurs Inscrits & Chercheurs</h3>
+              <p style="font-size:13px;color:#777;margin-top:2px">Suivi en temps réel de tous les étudiants, doctorants et chercheurs inscrits sur la plateforme.</p>
+            </div>
+            <div style="display:flex;gap:10px">
+              <button class="btn btn-outline" onclick="exportUsersCSV()"><i class="fas fa-file-excel"></i> Exporter CSV</button>
+              <button class="btn btn-primary" onclick="openAdminCreateUserModal()"><i class="fas fa-user-plus"></i> Ajouter un Chercheur</button>
+            </div>
+          </div>
+          <!-- User Stats Bar -->
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px">
+            <div style="background:#f8fafc;padding:12px 16px;border-radius:10px;border:1px solid #e2e8f0;text-align:center">
+              <div style="font-size:22px;font-weight:800;color:#c0392b" id="stat-users-total">0</div>
+              <div style="font-size:12px;color:#64748b;font-weight:600">Total Inscrits</div>
+            </div>
+            <div style="background:#fdf2f8;padding:12px 16px;border-radius:10px;border:1px solid #fbcfe8;text-align:center">
+              <div style="font-size:22px;font-weight:800;color:#8e44ad" id="stat-users-phd">0</div>
+              <div style="font-size:12px;color:#701a75;font-weight:600">Doctorats (PhD)</div>
+            </div>
+            <div style="background:#f0fdfa;padding:12px 16px;border-radius:10px;border:1px solid #ccfbf1;text-align:center">
+              <div style="font-size:22px;font-weight:800;color:#0d9488" id="stat-users-master">0</div>
+              <div style="font-size:12px;color:#115e59;font-weight:600">Masters (Mémoire)</div>
+            </div>
+            <div style="background:#fffbeb;padding:12px 16px;border-radius:10px;border:1px solid #fef3c7;text-align:center">
+              <div style="font-size:22px;font-weight:800;color:#d97706" id="stat-users-licence">0</div>
+              <div style="font-size:12px;color:#92400e;font-weight:600">Licences (PFE)</div>
+            </div>
+          </div>
+          <!-- Filters row -->
+          <div class="filter-row" style="margin-bottom:20px;display:flex;gap:12px;flex-wrap:wrap">
+            <div class="search-input-wrap" style="flex:2;min-width:240px">
+              <i class="fas fa-search"></i>
+              <input type="text" id="filter-client-search" placeholder="Rechercher par nom, email, téléphone, université..." oninput="renderAdminClients()" class="filter-input" />
+            </div>
+            <select id="filter-client-level" onchange="renderAdminClients()" class="filter-select" style="flex:1;min-width:160px">
+              <option value="">Tous les Niveaux Académiques</option>
+              <option value="licence">Licence (PFE)</option>
+              <option value="master">Master (Mémoire)</option>
+              <option value="phd">Doctorat (Thèse)</option>
+            </select>
+          </div>
+          <div id="admin-clients-table"></div>
+        </div>
+      </div>
+
+      <!-- Admin Messages Tab -->
+      <div id="admin-tab-messages" class="dash-tab">
+        <div class="dash-card">
+          <div class="dash-card-header"><h3><i class="fas fa-comments"></i> Messages des Clients</h3></div>
+          <div class="admin-messages-layout">
+            <div class="msg-client-list" id="admin-client-list"></div>
+            <div class="msg-chat-panel" id="admin-chat-panel">
+              <div class="msg-placeholder"><i class="fas fa-comments"></i><p>Sélectionnez un client pour voir ses messages</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Settings Tab -->
+      <div id="admin-tab-settings" class="dash-tab">
+        <div class="dash-card">
+          <div class="dash-card-header"><h3><i class="fas fa-cog"></i> Paramètres Système</h3></div>
+          <div class="settings-grid">
+            <div class="setting-item">
+              <label>Nom de la Plateforme</label>
+              <input type="text" value="MoroccanResearcher" />
+            </div>
+            <div class="setting-item">
+              <label>Email de Contact</label>
+              <input type="email" value="contact@moroccanresearcher.com" />
+            </div>
+            <div class="setting-item">
+              <label>Numéro WhatsApp</label>
+              <input type="text" value="0680364052" />
+            </div>
+            <div class="setting-item">
+              <label>Devise par Défaut</label>
+              <input type="text" value="DHS" />
+            </div>
+          </div>
+          <button class="btn btn-primary" style="margin-top:20px">Enregistrer les Paramètres</button>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ===================== ADMIN ARTICLE MODAL WITH COMPREHENSIVE SEO FORM ===================== -->
+<div id="modal-admin-article" class="modal-overlay" onclick="if(event.target===this)closeAdminArticleModal()">
+  <div class="modal-box" style="max-width:880px;width:95%">
+    <div class="modal-header">
+      <h3><i class="fas fa-pen-fancy"></i> <span id="modal-article-header-title">Rédiger un Article</span></h3>
+      <button class="modal-close" onclick="closeAdminArticleModal()">&times;</button>
+    </div>
+    
+    <!-- Modal Navigation Tabs -->
+    <div class="modal-tabs">
+      <button type="button" class="modal-tab-btn active" id="tab-btn-art-content" onclick="switchArticleModalTab('content')">
+        <i class="fas fa-file-alt"></i> 1. Contenu & Rédaction
+      </button>
+      <button type="button" class="modal-tab-btn" id="tab-btn-art-seo" onclick="switchArticleModalTab('seo')">
+        <i class="fas fa-search"></i> 2. Référencement & SEO (Google)
+      </button>
+      <button type="button" class="modal-tab-btn" id="tab-btn-art-preview" onclick="switchArticleModalTab('preview')">
+        <i class="fas fa-eye"></i> 3. Prévisualisation (SERP & Rendu)
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <input type="hidden" id="modal-article-id" />
+
+      <!-- TAB 1: CONTENU & RÉDACTION -->
+      <div id="art-modal-view-content" class="art-modal-view">
+        <div class="form-group">
+          <label>Titre de l'Article <span class="required-star">*</span></label>
+          <input type="text" id="art-form-title" placeholder="Ex: Comment Réussir sa Problématique de Recherche en Master et Doctorat" oninput="handleArticleTitleInput()" />
+        </div>
+
+        <div class="form-group">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <label style="margin-bottom:0">Slug URL / Permalien <span style="font-size:12px;color:#64748b;font-weight:normal">(utilisé pour l'adresse directe et le référencement)</span></label>
+            <button type="button" class="btn btn-sm btn-outline" style="padding:2px 8px;font-size:11px" onclick="regenerateArticleSlug()"><i class="fas fa-sync-alt"></i> Régénérer depuis le titre</button>
+          </div>
+          <div style="display:flex;align-items:center;background:#f8fafc;border:1px solid #cbd5e1;border-radius:8px;padding:0 12px">
+            <span style="font-size:13px;color:#64748b;font-weight:600">/article/</span>
+            <input type="text" id="art-form-slug" style="border:none;background:transparent;padding:10px 6px;width:100%;font-weight:600;color:#0f172a" placeholder="comment-reussir-sa-problematique-de-recherche" oninput="syncSeoFromSlug()" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Catégorie</label>
+            <select id="art-form-cat">
+              <option value="Méthodologie">Méthodologie</option>
+              <option value="SPSS & Statistiques">SPSS & Statistiques</option>
+              <option value="Rédaction & APA">Rédaction & APA</option>
+              <option value="Soutenance">Soutenance</option>
+              <option value="Recherche Qualitative">Recherche Qualitative</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Auteur</label>
+            <input type="text" id="art-form-author" placeholder="Dr. Karim Ouazzani" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <label>Temps de lecture estimé</label>
+              <button type="button" class="btn btn-sm btn-outline" style="padding:2px 8px;font-size:11px" onclick="autoCalcReadTime()"><i class="fas fa-calculator"></i> Calculer auto</button>
+            </div>
+            <input type="text" id="art-form-readtime" placeholder="6 min" />
+          </div>
+          <div class="form-group">
+            <label>Statut de Publication</label>
+            <select id="art-form-status">
+              <option value="Publié">Publié (En ligne et visible)</option>
+              <option value="Brouillon">Brouillon (Non visible)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Photo de Couverture avec Téléversement & Conversion WebP Automatique -->
+        <div class="form-group photo-upload-group">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <label style="margin-bottom:0">Photo de Couverture de l'Article</label>
+            <span class="webp-pill-tag"><i class="fas fa-bolt"></i> Conversion WebP Ultra-Rapide</span>
+          </div>
+
+          <!-- Zone de Dépôt / Téléversement -->
+          <div class="photo-dropzone" id="art-cover-dropzone" onclick="document.getElementById('art-cover-file-input').click()">
+            <input type="file" id="art-cover-file-input" accept="image/*,video/webm" style="display:none" onchange="handleCoverPhotoUpload(event)" />
+            <div class="dropzone-inner">
+              <div class="dropzone-icon-wrap">
+                <i class="fas fa-cloud-upload-alt"></i>
+              </div>
+              <div class="dropzone-text">
+                <div class="dropzone-main-text"><strong>Cliquez pour ajouter une photo</strong> ou glissez-déposez ici</div>
+                <div class="dropzone-sub-text">JPG, PNG, WEBP, WEBM · Converti instantanément en WebP pour accélérer la vitesse du site</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Aperçu & Statistiques de Compression WebP -->
+          <div id="art-cover-preview-card" class="photo-preview-card" style="display:none">
+            <div class="photo-preview-thumb-wrap">
+              <img id="art-cover-preview-img" src="" alt="Aperçu photo" class="photo-preview-thumb" />
+            </div>
+            <div class="photo-preview-info">
+              <div class="photo-preview-header">
+                <span class="badge-tag-webp"><i class="fas fa-bolt"></i> WebP Haute Performance</span>
+                <span id="art-cover-speed-gain" class="badge-tag-gain">-85% de poids</span>
+              </div>
+              <div class="photo-preview-stats" id="art-cover-stats-text">
+                Image optimisée et prête à être publiée
+              </div>
+              <div class="photo-preview-actions">
+                <button type="button" class="btn btn-sm btn-outline" onclick="document.getElementById('art-cover-file-input').click()"><i class="fas fa-sync-alt"></i> Remplacer la photo</button>
+                <button type="button" class="btn btn-sm btn-danger-outline" onclick="removeCoverPhoto()"><i class="fas fa-trash-alt"></i> Retirer</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- URL directe ou Suggestions HD -->
+          <details class="photo-alt-details" id="art-cover-alt-details" style="margin-top:10px">
+            <summary style="font-size:12px;font-weight:600;color:#64748b;cursor:pointer">
+              <i class="fas fa-link"></i> Ou saisir une URL externe / Choisir une suggestion HD
+            </summary>
+            <div style="padding-top:10px">
+              <input type="text" id="art-form-cover" placeholder="https://images.unsplash.com/photo-..." oninput="updateCoverPreview()" style="margin-bottom:8px" />
+              <div class="image-presets-grid">
+                <button type="button" class="img-preset-btn" onclick="selectCoverPreset('library')"><i class="fas fa-book"></i> Bibliothèque & Recherche</button>
+                <button type="button" class="img-preset-btn" onclick="selectCoverPreset('stats')"><i class="fas fa-chart-pie"></i> SPSS & Statistiques</button>
+                <button type="button" class="img-preset-btn" onclick="selectCoverPreset('graduation')"><i class="fas fa-graduation-cap"></i> Thèse & Soutenance</button>
+                <button type="button" class="img-preset-btn" onclick="selectCoverPreset('writing')"><i class="fas fa-pen-nib"></i> Rédaction & Normes APA</button>
+                <button type="button" class="img-preset-btn" onclick="selectCoverPreset('qualitative')"><i class="fas fa-comments"></i> Analyse Qualitative</button>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="form-group">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <label>Résumé / Extrait (Affiché dans les cartes et réseaux)</label>
+            <span id="char-count-excerpt" class="char-counter optimal">0 / 220 car.</span>
+          </div>
+          <textarea id="art-form-excerpt" rows="2" placeholder="Bref résumé de l'article pour inciter les chercheurs à lire..." oninput="updateExcerptCount()"></textarea>
+        </div>
+
+        <div class="form-group">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <label style="margin-bottom:0">Contenu de l'Article (HTML ou texte structuré) <span class="required-star">*</span></label>
+            <span id="word-count-badge" style="font-size:12px;font-weight:600;color:#64748b">0 mots</span>
+          </div>
+          <!-- Insertion Toolbar -->
+          <div class="editor-toolbar">
+            <button type="button" class="toolbar-btn btn-highlight" onclick="document.getElementById('art-inline-photo-input').click()"><i class="fas fa-camera"></i> + Insérer Photo (WebP)</button>
+            <input type="file" id="art-inline-photo-input" accept="image/*,video/webm" style="display:none" onchange="handleInlinePhotoUpload(event)" />
+            <button type="button" class="toolbar-btn" onclick="promptInsertImageUrl()"><i class="fas fa-link"></i> + Image par URL</button>
+            <button type="button" class="toolbar-btn" onclick="insertContentSnippet('h2')"><i class="fas fa-heading"></i> H2 Section</button>
+            <button type="button" class="toolbar-btn" onclick="insertContentSnippet('h3')"><i class="fas fa-heading"></i> H3 Sous-titre</button>
+            <button type="button" class="toolbar-btn" onclick="insertContentSnippet('p')"><i class="fas fa-paragraph"></i> Paragraphe</button>
+            <button type="button" class="toolbar-btn" onclick="insertContentSnippet('ul')"><i class="fas fa-list-ul"></i> Liste</button>
+            <button type="button" class="toolbar-btn" onclick="insertContentSnippet('quote')"><i class="fas fa-quote-left"></i> Citation</button>
+            <button type="button" class="toolbar-btn" onclick="insertContentSnippet('callout')"><i class="fas fa-lightbulb"></i> En Bref</button>
+            <button type="button" class="toolbar-btn" onclick="insertContentSnippet('table')"><i class="fas fa-table"></i> Tableau</button>
+          </div>
+          <textarea id="art-form-content" rows="9" placeholder="<h3>1. Introduction et contexte</h3><p>Rédigez ici le contenu de l'article ou glissez/collez (Ctrl+V) directement des photos...</p>" oninput="updateWordCount()"></textarea>
+          <div style="font-size:11.5px;color:#64748b;margin-top:4px"><i class="fas fa-info-circle"></i> <strong>Astuce Photos :</strong> Vous pouvez glisser une image directement dans le texte ou faire un simple <strong>Ctrl+V</strong> pour coller une capture d'écran.</div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group" style="flex:2">
+            <label>Tags / Mots-clés (séparés par des virgules)</label>
+            <input type="text" id="art-form-tags" placeholder="Méthodologie, Master, Thèse, Recherche" />
+          </div>
+          <div class="form-group" style="flex:1;display:flex;align-items:center;margin-top:28px">
+            <input type="checkbox" id="art-form-featured" style="width:18px;height:18px;margin-right:8px" />
+            <label for="art-form-featured" style="margin-bottom:0;cursor:pointer;font-weight:600">À la Une (Vedette)</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: RÉFÉRENCEMENT & SEO -->
+      <div id="art-modal-view-seo" class="art-modal-view" style="display:none">
+        <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:flex-start;gap:12px">
+          <i class="fas fa-info-circle" style="color:#2563eb;font-size:18px;margin-top:2px"></i>
+          <div style="font-size:13px;color:#1e40af;line-height:1.5">
+            <strong>Configuration SEO & Balises Google :</strong> Personnalisez le titre bleu Google, la description et les données pour indexer parfaitement cet article sur les moteurs et les réseaux sociaux.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <label>Titre SEO (Balise &lt;title&gt; & Meta Title) <span class="required-star">*</span></label>
+            <button type="button" class="btn btn-sm btn-outline" style="padding:2px 8px;font-size:11px" onclick="copyTitleToSEO()"><i class="fas fa-copy"></i> Copier le titre de l'article</button>
+          </div>
+          <input type="text" id="art-form-meta-title" placeholder="Ex: Réussir sa Problématique de Recherche en Master et Doctorat | Guide" oninput="updateSeoAudit()" />
+          <div class="char-counter" id="counter-meta-title">
+            <span>Longueur recommandée : 40 à 60 caractères</span>
+            <span id="len-meta-title">0 / 60 car.</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <label>Méta Description (&lt;meta name="description"&gt;) <span class="required-star">*</span></label>
+            <button type="button" class="btn btn-sm btn-outline" style="padding:2px 8px;font-size:11px" onclick="copyExcerptToSEO()"><i class="fas fa-copy"></i> Copier depuis le résumé</button>
+          </div>
+          <textarea id="art-form-meta-desc" rows="3" placeholder="Découvrez les étapes indispensables pour formuler une problématique percutante pour votre mémoire de Master ou votre thèse de doctorat au Maroc." oninput="updateSeoAudit()"></textarea>
+          <div class="char-counter" id="counter-meta-desc">
+            <span>Longueur recommandée : 120 à 160 caractères pour Google</span>
+            <span id="len-meta-desc">0 / 160 car.</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Mot-clé Principal (Focus Keyword)</label>
+            <input type="text" id="art-form-focus-keyword" placeholder="Ex: problématique recherche master" oninput="updateSeoAudit()" />
+            <span style="font-size:12px;color:#64748b">Cible principale pour le classement Google</span>
+          </div>
+          <div class="form-group">
+            <label>Type de Données Structurées (Schema.org)</label>
+            <select id="art-form-schema-type">
+              <option value="ScholarlyArticle">ScholarlyArticle (Recherche / Thèse - Recommandé)</option>
+              <option value="Article">Article (Standard)</option>
+              <option value="TechArticle">TechArticle (Guide Technique / SPSS)</option>
+            </select>
+            <span style="font-size:12px;color:#64748b">Format JSON-LD injecté dans le head</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>URL Canonique (Balise Canonical)</label>
+            <input type="text" id="art-form-canonical-url" placeholder="https://moroccanresearcher.com/article/..." />
+            <span style="font-size:12px;color:#64748b">Évite le contenu dupliqué sur les moteurs</span>
+          </div>
+          <div class="form-group">
+            <label>Indexation Robots (&lt;meta name="robots"&gt;)</label>
+            <select id="art-form-robots">
+              <option value="index, follow">index, follow (Accessible et indexé par Google)</option>
+              <option value="noindex, follow">noindex, follow (Ne pas afficher sur Google)</option>
+            </select>
+            <span style="font-size:12px;color:#64748b">Directive pour les robots d'indexation</span>
+          </div>
+        </div>
+
+        <!-- Live SEO Score & Checklist -->
+        <div class="seo-audit-container">
+          <div class="seo-score-bar-wrap">
+            <div class="seo-score-circle" id="seo-score-badge">
+              <div id="seo-score-val">100</div>
+              <span>/ 100</span>
+            </div>
+            <div>
+              <h4 style="margin:0 0 4px;font-size:16px;color:#0f172a" id="seo-score-label">Score SEO Excellent</h4>
+              <p style="margin:0;font-size:13px;color:#64748b">Audit en direct de votre contenu et de vos métadonnées</p>
+            </div>
+          </div>
+          <div id="seo-checklist">
+            <div class="seo-checklist-item" id="chk-title"><i class="fas fa-check-circle check"></i> Titre SEO bien calibré (40 - 65 car.)</div>
+            <div class="seo-checklist-item" id="chk-desc"><i class="fas fa-check-circle check"></i> Méta description idéale (120 - 165 car.)</div>
+            <div class="seo-checklist-item" id="chk-keyword-title"><i class="fas fa-check-circle check"></i> Mot-clé principal présent dans le titre</div>
+            <div class="seo-checklist-item" id="chk-keyword-desc"><i class="fas fa-check-circle check"></i> Mot-clé principal présent dans la description</div>
+            <div class="seo-checklist-item" id="chk-slug"><i class="fas fa-check-circle check"></i> Slug URL clair et sans caractères accentués</div>
+            <div class="seo-checklist-item" id="chk-cover"><i class="fas fa-check-circle check"></i> Image de couverture HD présente</div>
+            <div class="seo-checklist-item" id="chk-headings"><i class="fas fa-check-circle check"></i> Structure du contenu avec intertitres H2 / H3</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: PRÉVISUALISATION (SERP GOOGLE & RÉSEAUX) -->
+      <div id="art-modal-view-preview" class="art-modal-view" style="display:none">
+        <h4 style="font-size:15px;color:#0f172a;margin-bottom:12px"><i class="fab fa-google" style="color:#ea4335"></i> Aperçu du résultat sur Google (SERP Preview)</h4>
+        <div class="serp-preview-box">
+          <div class="serp-url-row">
+            <div class="serp-favicon">MR</div>
+            <span class="serp-site-name">Moroccan Researcher</span>
+            <span class="serp-breadcrumb" id="serp-preview-breadcrumb">https://moroccanresearcher.com › article › ...</span>
+          </div>
+          <div class="serp-title" id="serp-preview-title">Titre de l'article sur Google</div>
+          <div class="serp-desc" id="serp-preview-desc">La description de votre article apparaîtra ici dans les résultats de recherche Google...</div>
+        </div>
+
+        <h4 style="font-size:15px;color:#0f172a;margin:24px 0 12px"><i class="fas fa-share-alt" style="color:#0284c7"></i> Aperçu du Partage Réseaux Sociaux (WhatsApp, LinkedIn, Twitter)</h4>
+        <div class="social-card-preview">
+          <img id="social-preview-img" src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800" alt="Cover" class="social-card-img" />
+          <div class="social-card-body">
+            <div class="social-card-domain">MOROCCANRESEARCHER.COM</div>
+            <div class="social-card-title" id="social-preview-title">Titre de l'Article</div>
+            <div class="social-card-desc" id="social-preview-desc">Extrait ou description de l'article partagé...</div>
+          </div>
+        </div>
+
+        <h4 style="font-size:15px;color:#0f172a;margin:24px 0 12px"><i class="fas fa-file-alt" style="color:#16a34a"></i> Aperçu Réel du Rendu Lecteur & Photos</h4>
+        <div class="modal-article-live-preview">
+          <div id="modal-preview-hero-wrap" style="width:100%;height:220px;border-radius:12px;overflow:hidden;background:#0f172a;margin-bottom:18px">
+            <img id="modal-preview-hero-img" src="" alt="Photo de couverture" style="width:100%;height:100%;object-fit:cover" />
+          </div>
+          <h2 id="modal-preview-title" style="font-size:22px;color:#0f172a;margin-bottom:8px;font-family:'Playfair Display',serif">Titre de l'Article</h2>
+          <div style="font-size:12px;color:#64748b;margin-bottom:16px"><span id="modal-preview-cat" class="cat-pill">Méthodologie</span> · <span id="modal-preview-author">Dr. Karim Ouazzani</span> · <span id="modal-preview-readtime">5 min de lecture</span></div>
+          <div id="modal-preview-content" class="article-prose" style="font-size:14.5px;border-top:1px solid #f1f5f9;padding-top:16px">
+            <!-- Article content preview with images -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer" style="display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <span style="font-size:12.5px;color:#64748b" id="modal-footer-hint"><i class="fas fa-shield-alt"></i> SEO & Métadonnées vérifiées pour Desktop et Mobile</span>
+      </div>
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-outline" onclick="closeAdminArticleModal()">Annuler</button>
+        <button class="btn btn-primary" onclick="saveAdminArticle()"><i class="fas fa-save"></i> Enregistrer & Publier l'Article</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== ADMIN USER PROFILE DETAIL MODAL ===================== -->
+<div id="modal-admin-user-detail" class="modal-overlay" onclick="if(event.target===this)closeAdminUserDetailModal()">
+  <div class="modal-box" style="max-width:700px">
+    <div class="modal-header">
+      <h3><i class="fas fa-user-graduate"></i> Fiche du Chercheur Inscrit</h3>
+      <button class="modal-close" onclick="closeAdminUserDetailModal()">&times;</button>
+    </div>
+    <div class="modal-body" id="modal-user-detail-content">
+      <!-- Injected via openAdminUserDetailModal -->
+    </div>
+    <div class="modal-footer" id="modal-user-detail-footer">
+      <button class="btn btn-outline" onclick="closeAdminUserDetailModal()">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== ADMIN MANUALLY CREATE USER MODAL ===================== -->
+<div id="modal-admin-create-user" class="modal-overlay" onclick="if(event.target===this)closeAdminCreateUserModal()">
+  <div class="modal-box" style="max-width:650px">
+    <div class="modal-header">
+      <h3><i class="fas fa-user-plus"></i> Inscrire un Nouveau Chercheur</h3>
+      <button class="modal-close" onclick="closeAdminCreateUserModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Nom Complet <span class="required-star">*</span></label>
+        <input type="text" id="new-user-name" placeholder="Ex: Sara Tazi" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Email <span class="required-star">*</span></label>
+          <input type="email" id="new-user-email" placeholder="sara@student.ma" />
+        </div>
+        <div class="form-group">
+          <label>Téléphone / WhatsApp</label>
+          <input type="text" id="new-user-phone" placeholder="0661234567" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Niveau Académique</label>
+          <select id="new-user-level" onchange="syncNewUserPackOptions()">
+            <option value="master">Master (Mémoire)</option>
+            <option value="phd">Doctorat (Thèse)</option>
+            <option value="licence">Licence (PFE)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Pack Sélectionné</label>
+          <select id="new-user-pack">
+            <option value="expert">Expert Master</option>
+            <option value="chercheur">Chercheur Master</option>
+            <option value="excellence">Excellence Master</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Université / Établissement</label>
+        <input type="text" id="new-user-uni" placeholder="Université Mohammed V, Rabat" />
+      </div>
+      <div class="form-group">
+        <label>Titre / Thème de Recherche</label>
+        <input type="text" id="new-user-project-title" placeholder="Ex: Modélisation économétrique de la croissance verte..." />
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeAdminCreateUserModal()">Annuler</button>
+      <button class="btn btn-primary" onclick="saveAdminNewUser()"><i class="fas fa-check"></i> Créer l'Inscription</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== ADMIN CONTACT INQUIRY MODAL ===================== -->
+<div id="modal-admin-contact" class="modal-overlay" onclick="if(event.target===this)closeAdminContactModal()">
+  <div class="modal-box" style="max-width:720px">
+    <div class="modal-header">
+      <h3><i class="fas fa-envelope-open-text"></i> Traitement de la Demande</h3>
+      <button class="modal-close" onclick="closeAdminContactModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="modal-contact-id" />
+      <div style="background:#f8fafc;padding:16px 20px;border-radius:12px;border:1px solid #e2e8f0;margin-bottom:20px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+          <div>
+            <h4 id="mc-sender-name" style="font-size:16px;font-weight:700;color:#0f172a;margin-bottom:4px">Nom</h4>
+            <div style="font-size:13px;color:#64748b">
+              <i class="fas fa-envelope"></i> <span id="mc-sender-email">email</span> &nbsp;|&nbsp;
+              <i class="fas fa-phone"></i> <span id="mc-sender-phone">phone</span>
+            </div>
+          </div>
+          <span style="font-size:12px;color:#94a3b8" id="mc-sender-date">Date</span>
+        </div>
+        <div style="font-weight:700;font-size:14px;color:#c0392b;margin-top:12px;margin-bottom:6px" id="mc-subject">Sujet</div>
+        <div style="font-size:14px;color:#334155;line-height:1.6;white-space:pre-wrap;background:#fff;padding:12px 16px;border-radius:8px;border:1px solid #e2e8f0" id="mc-message">Message</div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Statut de la Demande</label>
+          <select id="mc-status">
+            <option value="Nouveau">Nouveau (À traiter)</option>
+            <option value="En cours">En cours de traitement</option>
+            <option value="Répondu">Répondu</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Notes Internes de l'Administrateur (Privé)</label>
+        <textarea id="mc-notes" rows="2" placeholder="Notes sur le client, rappel prévu, tarif proposé..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Réponse au Client</label>
+        <textarea id="mc-reply" rows="4" placeholder="Rédigez votre réponse..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeAdminContactModal()">Fermer</button>
+      <button class="btn btn-primary" onclick="saveContactTriage()"><i class="fas fa-check"></i> Enregistrer & Marquer Répondu</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PROJECT EDIT MODAL ===================== -->
+<div id="project-modal" class="modal-overlay" onclick="closeModal(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3><i class="fas fa-edit"></i> Modifier le Statut du Projet</h3>
+      <button class="modal-close" onclick="document.getElementById('project-modal').style.display='none'">&times;</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="modal-project-id" />
+      <div class="form-group"><label>Nom du Client</label><input type="text" id="modal-client-name" readonly /></div>
+      <div class="form-group"><label>Titre du Projet</label><input type="text" id="modal-project-title" /></div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>L'état d'avancement (%)</label>
+          <input type="number" id="modal-progress" min="0" max="100" />
+        </div>
+        <div class="form-group">
+          <label>Statut</label>
+          <select id="modal-status">
+            <option>En attente</option>
+            <option>En cours</option>
+            <option>En révision</option>
+            <option>Terminé</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Note de l'expert (visible au client)</label>
+        <textarea id="modal-note" rows="3" placeholder="Mise à jour pour le client..."></textarea>
+      </div>
+      <div class="milestones-editor">
+        <label>Jalons du projet</label>
+        <div id="milestones-editor-list"></div>
+      </div>
+      <div class="form-group"><label>Date limite</label><input type="date" id="modal-deadline" /></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="document.getElementById('project-modal').style.display='none'">Annuler</button>
+      <button class="btn btn-primary" onclick="saveProjectEdit()">Enregistrer <i class="fas fa-save"></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== STUDENT — EDIT PROJECT MODAL ===================== -->
+<div id="modal-student-project" class="modal-overlay" onclick="if(event.target===this)closeStudentProjectModal()">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3><i class="fas fa-folder-open"></i> Modifier mon Projet</h3>
+      <button class="modal-close" onclick="closeStudentProjectModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Titre du Projet <span class="required-star">*</span></label>
+        <input type="text" id="sp-title" placeholder="Titre de votre projet de recherche" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Domaine / Spécialité</label>
+          <input type="text" id="sp-domain" placeholder="Ex : Marketing, Finance, Informatique…" />
+        </div>
+        <div class="form-group">
+          <label>Date de Soutenance Souhaitée</label>
+          <input type="date" id="sp-deadline" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Description du Projet</label>
+        <textarea id="sp-desc" rows="3" placeholder="Décrivez votre sujet, vos objectifs et votre problématique…"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Notes pour votre Expert</label>
+        <textarea id="sp-notes" rows="2" placeholder="Contraintes, outils requis, langue de rédaction…"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeStudentProjectModal()">Annuler</button>
+      <button class="btn btn-primary" onclick="saveStudentProject()">Enregistrer <i class="fas fa-check"></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== STUDENT — EDIT PROFILE MODAL ===================== -->
+<div id="modal-student-profile" class="modal-overlay" onclick="if(event.target===this)closeStudentProfileModal()">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3><i class="fas fa-user-edit"></i> Modifier mon Profil</h3>
+      <button class="modal-close" onclick="closeStudentProfileModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Nom Complet <span class="required-star">*</span></label>
+        <input type="text" id="sp-prof-name" placeholder="Votre nom complet" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Téléphone</label>
+          <input type="tel" id="sp-prof-phone" placeholder="+212 6XX XXX XXX" />
+        </div>
+        <div class="form-group">
+          <label>Université / École</label>
+          <input type="text" id="sp-prof-uni" placeholder="Nom de votre université" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Mot de Passe Actuel</label>
+        <input type="password" id="sp-prof-pass-current" placeholder="Laissez vide pour ne pas modifier" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nouveau Mot de Passe</label>
+          <input type="password" id="sp-prof-pass-new" placeholder="Nouveau mot de passe" />
+        </div>
+        <div class="form-group">
+          <label>Confirmer le Mot de Passe</label>
+          <input type="password" id="sp-prof-pass-confirm" placeholder="Confirmez" />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeStudentProfileModal()">Annuler</button>
+      <button class="btn btn-primary" onclick="saveStudentProfile()">Enregistrer <i class="fas fa-check"></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast"></div>
+
+<script src="/js/data.js?v=4.0"></script>
+<script src="/js/app.js?v=4.0"></script>
+</body>
+</html>

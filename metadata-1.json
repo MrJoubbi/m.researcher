@@ -1,0 +1,6 @@
+{
+  "name": "Moroccan Researcher",
+  "description": "An open peer-reviewed academic publication and research hub for Moroccan scientific discoveries, sustainable innovation, and cultural studies.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
