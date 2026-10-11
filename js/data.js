@@ -429,12 +429,21 @@ const DataStore = {
         const req = store.getAll();
         req.onsuccess = () => {
           if (req.result && req.result.length > 0) {
-            this._articlesCache = req.result;
-            // Also attempt to refresh localStorage cache
-            try {
-              localStorage.setItem(STORAGE_KEYS.ARTICLES, JSON.stringify(req.result));
-            } catch (quotaErr) {}
-            // Trigger UI refreshes if functions exist
+            const current = this._articlesCache || [];
+            const mergedMap = new Map();
+            current.forEach(art => mergedMap.set(art.id, art));
+            req.result.forEach(art => {
+              if (!mergedMap.has(art.id)) {
+                mergedMap.set(art.id, art);
+              }
+            });
+            const merged = Array.from(mergedMap.values());
+            if (merged.length >= current.length) {
+              this._articlesCache = merged;
+              try {
+                localStorage.setItem(STORAGE_KEYS.ARTICLES, JSON.stringify(merged));
+              } catch (quotaErr) {}
+            }
             if (typeof renderAdminArticles === 'function') renderAdminArticles();
             if (typeof renderBlogGrid === 'function') renderBlogGrid();
             if (typeof renderHomeBlogGrid === 'function') renderHomeBlogGrid();

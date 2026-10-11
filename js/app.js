@@ -153,16 +153,20 @@ function navigateTo(path, event = null) {
   }
   const clean = (path || '').trim();
   const lower = clean.toLowerCase();
-  if (clean === '/' || lower === '/home' || clean === '') {
+  if (clean === '/' || lower === '/home' || clean === '' || lower === '/') {
     showPage('home', true);
-  } else if (lower === '/blog' || lower === 'blog') {
+  } else if (lower.includes('blog') || lower === '/blog') {
     showPage('blog', true);
-  } else if (clean === '/Formations' || lower === '/formations') {
+  } else if (lower.includes('formation') || lower === '/formations') {
     showPage('formations', true);
-  } else if (clean === '/Nos_Services' || lower === '/nos_services' || clean === '/Nos Services' || lower === '/services') {
+  } else if (lower.includes('service') || lower === '/nos_services' || lower === '/services') {
     showPage('services', true);
-  } else if (clean === '/Contact' || lower === '/contact') {
+  } else if (lower.includes('contact') || lower === '/contact') {
     showPage('contact', true);
+  } else if (lower.includes('login')) {
+    showPage('login', true);
+  } else if (lower.includes('register')) {
+    showPage('register', true);
   } else if (lower.startsWith('/article/') || lower.startsWith('/blog/')) {
     const slug = clean.replace(/^\/(article|blog)\//i, '');
     openArticleDetail(slug, event);

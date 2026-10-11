@@ -289,6 +289,19 @@
   <section class="contact" id="contact">
     <div class="container">
       <div class="contact-grid">
+        <form class="contact-form" onsubmit="handleContact(event)">
+          <input type="text" name="bot_check" style="display:none" tabindex="-1" autocomplete="off" />
+          <div class="form-row">
+            <div class="form-group"><label>Nom Complet <span class="required-star">*</span></label><input type="text" name="name" id="contact-name" placeholder="Votre nom complet" required /></div>
+            <div class="form-group"><label>Email <span class="required-star">*</span></label><input type="email" name="email" id="contact-email" placeholder="vous@email.com" required /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Téléphone / WhatsApp</label><input type="tel" name="phone" id="contact-phone" placeholder="06XXXXXXXX" /></div>
+            <div class="form-group"><label>Sujet de la Demande <span class="required-star">*</span></label><input type="text" name="subject" id="contact-subject" placeholder="Ex: Accompagnement PFE, SPSS..." required /></div>
+          </div>
+          <div class="form-group"><label>Message / Description de votre besoin <span class="required-star">*</span></label><textarea name="message" id="contact-message" rows="4" placeholder="Parlez-nous de votre projet, délai et exigences..." required></textarea></div>
+          <button type="submit" class="btn btn-primary btn-full">Envoyer le Message <i class="fas fa-paper-plane"></i></button>
+        </form>
         <div class="contact-info">
           <span class="section-tag">Contactez-Nous</span>
           <h2>Nous Sommes Là Pour Vous</h2>
@@ -308,14 +321,6 @@
                 <span>0680364052</span>
               </div>
             </a>
-            <a href="https://wa.me/212680364052" target="_blank" rel="noopener noreferrer" class="contact-item contact-item-wa" title="Discuter directement sur WhatsApp : 0680364052">
-              <i class="fab fa-whatsapp"></i>
-              <div>
-                <strong style="display:block;font-size:13px;color:#16a34a;margin-bottom:2px">WhatsApp Direct</strong>
-                <span style="font-weight:600;color:var(--dark)">0680364052</span>
-                <span class="contact-wa-badge">Discuter sur WhatsApp <i class="fas fa-arrow-right"></i></span>
-              </div>
-            </a>
             <div class="contact-item">
               <i class="fas fa-map-marker-alt"></i>
               <div>
@@ -325,19 +330,6 @@
             </div>
           </div>
         </div>
-        <form class="contact-form" onsubmit="handleContact(event)">
-          <input type="text" name="bot_check" style="display:none" tabindex="-1" autocomplete="off" />
-          <div class="form-row">
-            <div class="form-group"><label>Nom Complet <span class="required-star">*</span></label><input type="text" name="name" id="contact-name" placeholder="Votre nom complet" required /></div>
-            <div class="form-group"><label>Email <span class="required-star">*</span></label><input type="email" name="email" id="contact-email" placeholder="vous@email.com" required /></div>
-          </div>
-          <div class="form-row">
-            <div class="form-group"><label>Téléphone / WhatsApp</label><input type="tel" name="phone" id="contact-phone" placeholder="06XXXXXXXX" /></div>
-            <div class="form-group"><label>Sujet de la Demande <span class="required-star">*</span></label><input type="text" name="subject" id="contact-subject" placeholder="Ex: Accompagnement PFE, SPSS..." required /></div>
-          </div>
-          <div class="form-group"><label>Message / Description de votre besoin <span class="required-star">*</span></label><textarea name="message" id="contact-message" rows="4" placeholder="Parlez-nous de votre projet, délai et exigences..." required></textarea></div>
-          <button type="submit" class="btn btn-primary btn-full">Envoyer le Message <i class="fas fa-paper-plane"></i></button>
-        </form>
       </div>
     </div>
   </section>
@@ -399,6 +391,19 @@
   </div>
   <div class="container" style="padding:60px 20px 80px">
     <div class="contact-grid">
+      <form class="contact-form" onsubmit="handleContact(event)">
+        <input type="text" name="bot_check" style="display:none" tabindex="-1" autocomplete="off" />
+        <div class="form-row">
+          <div class="form-group"><label>Nom Complet <span class="required-star">*</span></label><input type="text" name="name" id="contact-name-page" placeholder="Votre nom complet" required /></div>
+          <div class="form-group"><label>Email <span class="required-star">*</span></label><input type="email" name="email" id="contact-email-page" placeholder="vous@email.com" required /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Téléphone / WhatsApp</label><input type="tel" name="phone" id="contact-phone-page" placeholder="06XXXXXXXX" /></div>
+          <div class="form-group"><label>Sujet de la Demande <span class="required-star">*</span></label><input type="text" name="subject" id="contact-subject-page" placeholder="Ex: Accompagnement PFE, SPSS..." required /></div>
+        </div>
+        <div class="form-group"><label>Message / Description de votre besoin <span class="required-star">*</span></label><textarea name="message" id="contact-message-page" rows="4" placeholder="Parlez-nous de votre projet, délai et exigences..." required></textarea></div>
+        <button type="submit" class="btn btn-primary btn-full">Envoyer le Message <i class="fas fa-paper-plane"></i></button>
+      </form>
       <div class="contact-info">
         <span class="section-tag">Contact Direct</span>
         <h2>Discutons de Votre Projet</h2>
@@ -418,14 +423,6 @@
               <span>0680364052</span>
             </div>
           </a>
-          <a href="https://wa.me/212680364052" target="_blank" rel="noopener noreferrer" class="contact-item contact-item-wa" title="Discuter directement sur WhatsApp : 0680364052">
-            <i class="fab fa-whatsapp"></i>
-            <div>
-              <strong style="display:block;font-size:13px;color:#16a34a;margin-bottom:2px">WhatsApp Direct</strong>
-              <span style="font-weight:600;color:var(--dark)">0680364052</span>
-              <span class="contact-wa-badge">Discuter sur WhatsApp <i class="fas fa-arrow-right"></i></span>
-            </div>
-          </a>
           <div class="contact-item">
             <i class="fas fa-map-marker-alt"></i>
             <div>
@@ -435,19 +432,6 @@
           </div>
         </div>
       </div>
-      <form class="contact-form" onsubmit="handleContact(event)">
-        <input type="text" name="bot_check" style="display:none" tabindex="-1" autocomplete="off" />
-        <div class="form-row">
-          <div class="form-group"><label>Nom Complet <span class="required-star">*</span></label><input type="text" name="name" id="contact-name-page" placeholder="Votre nom complet" required /></div>
-          <div class="form-group"><label>Email <span class="required-star">*</span></label><input type="email" name="email" id="contact-email-page" placeholder="vous@email.com" required /></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group"><label>Téléphone / WhatsApp</label><input type="tel" name="phone" id="contact-phone-page" placeholder="06XXXXXXXX" /></div>
-          <div class="form-group"><label>Sujet de la Demande <span class="required-star">*</span></label><input type="text" name="subject" id="contact-subject-page" placeholder="Ex: Accompagnement PFE, SPSS..." required /></div>
-        </div>
-        <div class="form-group"><label>Message / Description de votre besoin <span class="required-star">*</span></label><textarea name="message" id="contact-message-page" rows="4" placeholder="Parlez-nous de votre projet, délai et exigences..." required></textarea></div>
-        <button type="submit" class="btn btn-primary btn-full">Envoyer le Message <i class="fas fa-paper-plane"></i></button>
-      </form>
     </div>
   </div>
 
@@ -859,9 +843,7 @@
           <button class="blog-cat-btn" onclick="filterBlogCategory('Rédaction & APA', this)"><i class="fas fa-feather-alt"></i> Rédaction & APA</button>
         </div>
       </div>
-      <button class="btn btn-primary" onclick="openArticleEditorPage()" style="display:inline-flex;align-items:center;gap:8px;padding:11px 20px;font-weight:700;box-shadow:0 4px 16px rgba(192,57,43,0.25);white-space:nowrap;cursor:pointer">
-        <i class="fas fa-plus"></i> Nouvel Article
-      </button>
+
     </div>
 
     <div id="blog-featured-article" style="margin-bottom:40px"></div>

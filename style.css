@@ -209,9 +209,38 @@ input, select, textarea, button { font-family: inherit; }
 .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: start; }
 .contact-info h2 { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--dark); margin: 12px 0 16px; }
 .contact-info p { color: var(--gray-700); margin-bottom: 28px; }
-.contact-items { display: flex; flex-direction: column; gap: 16px; }
-.contact-item { display: flex; align-items: center; gap: 14px; color: var(--gray-700); font-size: 15px; }
-.contact-item i { width: 36px; height: 36px; background: rgba(192,57,43,.1); color: var(--red); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.contact-items { display: flex; flex-direction: column; gap: 14px; }
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--gray-700);
+  font-size: 15px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+.contact-item:hover {
+  border-color: #cbd5e1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+}
+.contact-item i {
+  width: 40px;
+  height: 40px;
+  background: rgba(192,57,43,.1);
+  color: var(--red);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
 .contact-form { background: #fff; padding: 40px; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
 
 /* Footer - Classic Dark Academic Theme (Previous Version) */
@@ -362,10 +391,11 @@ input, select, textarea, button { font-family: inherit; }
 
 /* Contact Place WhatsApp Item */
 .contact-item-wa {
-  background: #f0fdf4 !important;
+  background: #ffffff !important;
   border: 1.5px solid #86efac !important;
   border-radius: 12px !important;
-  padding: 12px 16px !important;
+  padding: 14px 18px !important;
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.05) !important;
   transition: all 0.25s ease !important;
   text-decoration: none !important;
   display: flex !important;
@@ -373,10 +403,10 @@ input, select, textarea, button { font-family: inherit; }
   gap: 14px !important;
 }
 .contact-item-wa:hover {
-  background: #dcfce7 !important;
+  background: #f0fdf4 !important;
   border-color: #22c55e !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.2);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.15);
 }
 .contact-item-wa i {
   background: #25D366 !important;
