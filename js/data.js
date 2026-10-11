@@ -412,77 +412,62 @@ const DataStore = {
     if (this._initialized) return;
     this._initialized = true;
 
-    // First try localStorage
+    // Load from localStorage first (authoritative for recent user actions like deletions or additions)
     try {
-      const local = localStorage.getItem(STORAGE_KEYS.ARTICLES);
-      if (local) {
-        this._articlesCache = JSON.parse(local);
+      const data = localStorage.getItem(STORAGE_KEYS.ARTICLES);
+      if (data) {
+        const parsed = JSON.parse(data);
+        if (Array.isArray(parsed)) {
+          this._articlesCache = parsed;
+          return;
+        }
       }
     } catch (e) {}
 
-    // Next sync with IndexedDB (the durable source of truth for all photos)
+    // Next try IndexedDB if localStorage was empty
     try {
       const db = await getMRDatabase();
       if (db) {
         const tx = db.transaction(STORE_ARTICLES, 'readonly');
         const store = tx.objectStore(STORE_ARTICLES);
         const req = store.getAll();
-        req.onsuccess = () => {
-          if (req.result && req.result.length > 0) {
-            const current = this._articlesCache || [];
-            const mergedMap = new Map();
-            current.forEach(art => mergedMap.set(art.id, art));
-            req.result.forEach(art => {
-              if (!mergedMap.has(art.id)) {
-                mergedMap.set(art.id, art);
-              }
-            });
-            const merged = Array.from(mergedMap.values());
-            if (merged.length >= current.length) {
-              this._articlesCache = merged;
+        await new Promise((resolve) => {
+          req.onsuccess = () => {
+            if (req.result && Array.isArray(req.result) && req.result.length > 0) {
+              this._articlesCache = req.result;
               try {
-                localStorage.setItem(STORAGE_KEYS.ARTICLES, JSON.stringify(merged));
-              } catch (quotaErr) {}
+                localStorage.setItem(STORAGE_KEYS.ARTICLES, JSON.stringify(req.result));
+              } catch (e) {}
             }
-            if (typeof renderAdminArticles === 'function') renderAdminArticles();
-            if (typeof renderBlogGrid === 'function') renderBlogGrid();
-            if (typeof renderHomeBlogGrid === 'function') renderHomeBlogGrid();
-          }
-        };
+            resolve();
+          };
+          req.onerror = () => resolve();
+        });
       }
     } catch (err) {
-      console.warn('IndexedDB sync error:', err);
+      console.warn('IndexedDB init error:', err);
+    }
+
+    if (!this._articlesCache) {
+      this._articlesCache = [...INITIAL_ARTICLES];
     }
   },
 
   getArticles() {
-    if (this._articlesCache && this._articlesCache.length > 0) {
+    if (this._articlesCache !== null && this._articlesCache !== undefined) {
       return this._articlesCache;
     }
     try {
       const data = localStorage.getItem(STORAGE_KEYS.ARTICLES);
       if (data) {
         const parsed = JSON.parse(data);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          // Merge any newly introduced default articles (e.g. art-7) that aren't yet in storage
-          const existingIds = new Set(parsed.map(a => a.id));
-          const missingDefaults = INITIAL_ARTICLES.filter(def => !existingIds.has(def.id));
-          const merged = missingDefaults.length > 0 ? [...missingDefaults, ...parsed] : parsed;
-
-          // Sanitize any previously corrupted/truncated cover strings
-          const cleaned = merged.map(art => {
-            if (art.cover && art.cover.startsWith('data:image/') && art.cover.length < 1000) {
-              const seedMatch = INITIAL_ARTICLES.find(i => i.id === art.id);
-              return { ...art, cover: seedMatch ? seedMatch.cover : 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1200' };
-            }
-            return art;
-          });
-
-          this._articlesCache = cleaned;
-          return cleaned;
+        if (Array.isArray(parsed)) {
+          this._articlesCache = parsed;
+          return parsed;
         }
       }
     } catch (e) {}
+
     this._articlesCache = [...INITIAL_ARTICLES];
     return this._articlesCache;
   },
@@ -490,7 +475,23 @@ const DataStore = {
   saveArticles(articles) {
     this._articlesCache = [...articles];
 
-    // 1. Permanently save into IndexedDB (virtually unlimited quota for high-res images)
+    // 1. Save into localStorage
+    try {
+      localStorage.setItem(STORAGE_KEYS.ARTICLES, JSON.stringify(articles));
+    } catch (e) {
+      console.warn('LocalStorage quota reached, saving safe copies:', e);
+      try {
+        const safeCopies = articles.map(a => {
+          const isHeavyBase64 = a.cover && a.cover.startsWith('data:image/') && a.cover.length > 250000;
+          return isHeavyBase64 
+            ? { ...a, cover: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1200' }
+            : a;
+        });
+        localStorage.setItem(STORAGE_KEYS.ARTICLES, JSON.stringify(safeCopies));
+      } catch (err2) {}
+    }
+
+    // 2. Permanently save into IndexedDB
     getMRDatabase().then(db => {
       if (!db) return;
       try {
@@ -502,25 +503,6 @@ const DataStore = {
         console.error('IndexedDB save error:', dbErr);
       }
     });
-
-    // 2. Save into localStorage with safe fallback (never truncate base64 strings!)
-    try {
-      localStorage.setItem(STORAGE_KEYS.ARTICLES, JSON.stringify(articles));
-    } catch (e) {
-      console.warn('LocalStorage quota reached (photos preserved in IndexedDB):', e);
-      try {
-        const safeCopies = articles.map(a => {
-          // If a base64 payload is too large for localStorage, preserve clean URL rather than corrupting
-          const isHeavyBase64 = a.cover && a.cover.startsWith('data:image/') && a.cover.length > 250000;
-          return isHeavyBase64 
-            ? { ...a, cover: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1200' }
-            : a;
-        });
-        localStorage.setItem(STORAGE_KEYS.ARTICLES, JSON.stringify(safeCopies));
-      } catch (err2) {
-        console.warn('Could not store full articles in localStorage, retained in IndexedDB and memory cache.');
-      }
-    }
   },
   getProjects() {
     try {
